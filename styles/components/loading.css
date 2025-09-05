@@ -1,0 +1,117 @@
+/**
+ * WebSign Portfolio - Loading Screen Styles
+ * Author: Albano Caminos
+ */
+
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.terminal-loader {
+    text-align: center;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.loader-text {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent-primary);
+}
+
+.loader-text .prompt {
+    color: var(--accent-primary);
+    margin-right: 0.5rem;
+}
+
+.loader-text .command {
+    color: var(--text-primary);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    width: 0%;
+    animation: loading-progress 3s ease-out forwards;
+}
+
+.loader-status {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.status-line {
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+    opacity: 0;
+    animation: status-appear 0.5s ease forwards;
+}
+
+.status-line:nth-child(1) { animation-delay: 0.5s; }
+.status-line:nth-child(2) { animation-delay: 1s; }
+.status-line:nth-child(3) { animation-delay: 1.5s; }
+.status-line:nth-child(4) { animation-delay: 2s; }
+
+/* ===== LOADING ANIMATIONS ===== */
+@keyframes loading-progress {
+    to { width: 100%; }
+}
+
+@keyframes status-appear {
+    to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .terminal-loader {
+        padding: 1rem;
+        max-width: 90%;
+    }
+
+    .loader-text {
+        font-size: 1.2rem;
+    }
+
+    .loader-status {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .loader-text {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-bar {
+        margin: 1.5rem 0;
+    }
+}

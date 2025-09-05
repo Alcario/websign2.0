@@ -1,0 +1,133 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+    /* Colors */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --bg-card: #1e1e1e;
+    
+    /* Accent Colors */
+    --accent-primary: #00ff88;
+    --accent-secondary: #0088ff;
+    --accent-tertiary: #ff0088;
+    --accent-warning: #ffaa00;
+    --accent-error: #ff4444;
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #666666;
+    --text-code: #f8f8f2;
+    
+    /* Syntax Highlighting */
+    --syntax-keyword: #ff79c6;
+    --syntax-string: #f1fa8c;
+    --syntax-number: #bd93f9;
+    --syntax-comment: #6272a4;
+    --syntax-operator: #ff79c6;
+    --syntax-property: #50fa7b;
+    --syntax-bracket: #f8f8f2;
+    
+    /* UI Elements */
+    --border-color: #333333;
+    --border-accent: #444444;
+    --shadow-primary: 0 8px 32px rgba(0, 255, 136, 0.1);
+    --shadow-secondary: 0 4px 16px rgba(0, 136, 255, 0.1);
+    --shadow-tertiary: 0 2px 8px rgba(255, 0, 136, 0.1);
+    
+    /* Fonts */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Sizes */
+    --header-height: 80px;
+    --section-padding: 6rem 2rem;
+    --container-max-width: 1400px;
+}
+
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ===== COMMON COMPONENTS ===== */
+.section-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--section-padding);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    position: relative;
+}
+
+.title-bracket {
+    color: var(--accent-primary);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Utility Classes */
+.hidden { display: none !important; }
+.visible { display: block !important; }
+.no-scroll { overflow: hidden; }
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Import component styles */
+@import 'components/loading.css';
+@import 'components/navigation.css';
+@import 'components/hero.css';
+@import 'components/skills.css';
+@import 'components/projects.css';
+@import 'components/services.css';
+@import 'components/experience.css';
+@import 'components/contact.css';
+@import 'components/footer.css';
+@import 'components/modals.css';
+@import 'utilities.css';
