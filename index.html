@@ -395,6 +395,15 @@
             <p>¿Necesitas un sitio web, un sistema de gestión o una aplicación personalizada? Cuéntanos tu idea y te ayudamos a desarrollarla.</p>
             
             <form class="contact-form" id="contactForm" action="https://formspree.io/f/xblpbgbj" method="POST">
+                <!-- Campo oculto para el asunto del email -->
+                <input type="hidden" name="_subject" value="Nueva consulta desde WebSign">
+                
+                <!-- Campo oculto para el email de respuesta -->
+                <input type="hidden" name="_replyto" value="">
+                
+                <!-- Honeypot para spam (campo oculto) -->
+                <input type="text" name="_gotcha" style="display:none">
+                
                 <div class="form-group">
                     <label for="name">Nombre Completo</label>
                     <input type="text" id="name" name="name" required>
