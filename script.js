@@ -35,6 +35,22 @@ contactForm.addEventListener('submit', (e) => {
     contactForm.reset();
 });
 
+// Lazy loading images - add loaded class when image loads
+document.addEventListener('DOMContentLoaded', () => {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    lazyImages.forEach(img => {
+        img.addEventListener('load', () => {
+            img.classList.add('loaded');
+        });
+        
+        // Si la imagen ya está cargada (desde caché)
+        if (img.complete) {
+            img.classList.add('loaded');
+        }
+    });
+});
+
 // Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
