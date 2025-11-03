@@ -27,13 +27,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('¡Gracias por tu consulta! Nos pondremos en contacto contigo pronto.');
-    contactForm.reset();
-});
+// FormSpree form submission - El formulario se envía naturalmente a FormSpree
+// No necesitamos preventDefault ya que FormSpree maneja el envío
 
 // Lazy loading images - add loaded class when image loads
 document.addEventListener('DOMContentLoaded', () => {
