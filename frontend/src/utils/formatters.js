@@ -1,3 +1,5 @@
+export const SLUG_PATTERN = '(?:[a-z0-9]|-)+';
+
 export function getImageUrl(image) {
   if (!image) return '';
   const url = typeof image === 'string' ? image : image.url || '';

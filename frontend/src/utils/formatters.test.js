@@ -1,9 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { getImageUrl, slugify, yearLabel } from './formatters';
+import { getImageUrl, SLUG_PATTERN, slugify, yearLabel } from './formatters';
 
 describe('formatters', () => {
   it('normaliza slugs en español', () => {
     expect(slugify('Gestión & Educación')).toBe('gestion-educacion');
+  });
+
+  it('usa un patrón de slug compatible con el modo Unicode del navegador', () => {
+    const pattern = new RegExp(`^(?:${SLUG_PATTERN})$`, 'v');
+    expect(pattern.test('tarjeta-digital')).toBe(true);
+    expect(pattern.test('Tarjeta digital')).toBe(false);
   });
 
   it('tolera imágenes objeto o string', () => {

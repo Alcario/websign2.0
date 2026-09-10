@@ -83,6 +83,12 @@ integrationSuite('flujo administrativo con MongoDB aislado', () => {
       metaDescription: 'Validación del flujo administrativo completo.',
     };
 
+    const invalidUrlResponse = await agent.post('/api/admin/projects').send({ ...payload, websiteUrl: 'https://' });
+    expect(invalidUrlResponse.status).toBe(422);
+    expect(invalidUrlResponse.body.errors).toEqual(expect.arrayContaining([
+      expect.objectContaining({ field: 'websiteUrl', message: 'La URL debe ser válida y usar HTTP o HTTPS.' }),
+    ]));
+
     const createResponse = await agent.post('/api/admin/projects').send(payload);
     expect(createResponse.status).toBe(201);
     const projectId = createResponse.body.data.project._id;

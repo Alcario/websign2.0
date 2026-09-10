@@ -4,11 +4,12 @@ export function notFound(request, _response, next) {
   next(error);
 }
 
-export function errorHandler(error, _request, response, _next) {
+export function errorHandler(error, request, response, _next) {
   let status = error.status || 500;
   let message = error.message || 'Error interno del servidor.';
   if (error.name === 'ValidationError') { status = 422; message = 'Los datos no cumplen el formato requerido.'; }
   if (error.code === 11000) { status = 409; message = `Ya existe un registro con ese ${Object.keys(error.keyPattern || {})[0] || 'valor'}.`; }
+  if (status >= 500) console.error(`${request.method} ${request.originalUrl}:`, error);
   const payload = { message };
   if (error.details) payload.errors = error.details;
   if (process.env.NODE_ENV !== 'production' && status >= 500) payload.stack = error.stack;

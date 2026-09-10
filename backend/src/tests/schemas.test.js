@@ -21,4 +21,19 @@ describe('validadores', () => {
     const result = projectSchema.safeParse(base);
     expect(result.success).toBe(false);
   });
+
+  it('reporta URLs mal formadas como error de validación sin lanzar excepciones', () => {
+    const payload = {
+      title: 'Proyecto seguro', slug: 'proyecto-seguro', shortDescription: 'Una descripción suficientemente larga.',
+      description: 'Una descripción completa y suficientemente extensa.', category: '507f1f77bcf86cd799439011',
+      coverImage: { url: '/uploads/portada.webp' }, websiteUrl: 'https://',
+    };
+
+    expect(() => projectSchema.safeParse(payload)).not.toThrow();
+    const result = projectSchema.safeParse(payload);
+    expect(result.success).toBe(false);
+    expect(result.error.issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ path: ['websiteUrl'], message: 'La URL debe ser válida y usar HTTP o HTTPS.' }),
+    ]));
+  });
 });

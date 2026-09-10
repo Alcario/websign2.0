@@ -1,9 +1,16 @@
 import { z } from 'zod';
 
 const slug = z.string().min(2).max(160).regex(/^[a-z0-9-]+$/, 'El slug solo admite minúsculas, números y guiones.');
-const httpUrl = z.url().refine((value) => ['http:', 'https:'].includes(new URL(value).protocol), 'La URL debe usar HTTP o HTTPS.');
+const isHttpUrl = (value) => {
+  try {
+    return ['http:', 'https:'].includes(new URL(value).protocol);
+  } catch {
+    return false;
+  }
+};
+const httpUrl = z.string().max(2000).refine(isHttpUrl, 'La URL debe ser válida y usar HTTP o HTTPS.');
 const optionalUrl = z.union([z.literal(''), httpUrl]).default('');
-const resourceUrl = z.string().min(1).max(2000).refine((value) => (value.startsWith('/') && !value.startsWith('//')) || httpUrl.safeParse(value).success, 'Usá una ruta local o una URL HTTP(S).');
+const resourceUrl = z.string().min(1).max(2000).refine((value) => (value.startsWith('/') && !value.startsWith('//')) || isHttpUrl(value), 'Usá una ruta local o una URL HTTP(S).');
 const image = z.object({ url: resourceUrl, alt: z.string().max(240).default(''), order: z.coerce.number().int().default(0) });
 
 export const loginSchema = z.object({ email: z.email().max(180), password: z.string().min(10).max(200) });
