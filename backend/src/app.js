@@ -23,7 +23,9 @@ export function createApp() {
   app.use(express.json({ limit: '1mb' }));
   app.use(cookieParser());
   if (env.nodeEnv !== 'test') app.use(morgan(env.isProduction ? 'combined' : 'dev'));
-  app.use('/uploads', express.static(path.resolve(process.cwd(), env.uploadDir), { fallthrough: false, maxAge: env.isProduction ? '7d' : 0 }));
+  const uploadedFiles = express.static(path.resolve(process.cwd(), env.uploadDir), { fallthrough: false, maxAge: env.isProduction ? '7d' : 0 });
+  app.use('/api/uploads', uploadedFiles);
+  app.use('/uploads', uploadedFiles);
   app.get('/robots.txt', robots);
   app.get(['/sitemap.xml', '/api/sitemap.xml'], sitemap);
   app.get('/api/health', (_request, response) => response.json({ data: { status: 'ok', service: 'websign-api' } }));

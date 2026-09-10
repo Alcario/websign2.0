@@ -1,0 +1,1502 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>WebSign | Sistemas Listos para Usar &amp; Desarrollo de Software a Medida</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #070A11; }
+    ::-webkit-scrollbar-thumb { background: #222a3d; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7928ca; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface": "#dae2fd",
+            "tertiary": "#7bd0ff",
+            "surface-container": "#171f33",
+            "on-secondary-container": "#ffd8fd",
+            "outline": "#988d9f",
+            "accent-gradient-end": "#D946EF",
+            "on-error": "#690005",
+            "tertiary-fixed": "#c4e7ff",
+            "on-primary-fixed": "#2b0052",
+            "warning": "#F59E0B",
+            "inverse-on-surface": "#283044",
+            "tertiary-container": "#005f82",
+            "error-container": "#93000a",
+            "surface-base": "#070A11",
+            "text-secondary": "#94A3B8",
+            "surface-container-low": "#131b2e",
+            "on-tertiary": "#00354a",
+            "on-secondary-fixed-variant": "#7c008e",
+            "primary-container": "#7928ca",
+            "surface-container-high": "#222a3d",
+            "primary-fixed": "#efdbff",
+            "success": "#10B981",
+            "surface-card-elevated": "#1E293B",
+            "surface-container-lowest": "#060e20",
+            "inverse-primary": "#7f30d0",
+            "border-glow": "rgba(217, 70, 239, 0.35)",
+            "on-secondary-fixed": "#36003e",
+            "border-hairline": "rgba(255, 255, 255, 0.08)",
+            "on-background": "#dae2fd",
+            "accent-gradient-start": "#7928CA",
+            "on-tertiary-fixed": "#001e2c",
+            "secondary": "#fbabff",
+            "badge-purple-bg": "rgba(121, 40, 202, 0.15)",
+            "surface-container-highest": "#2d3449",
+            "on-tertiary-fixed-variant": "#004c69",
+            "surface": "#0b1326",
+            "on-secondary": "#580065",
+            "badge-fuchsia-bg": "rgba(217, 70, 239, 0.15)",
+            "surface-tint": "#dbb8ff",
+            "surface-card": "#0F172A",
+            "secondary-fixed": "#ffd6fd",
+            "secondary-container": "#ae05c6",
+            "inverse-surface": "#dae2fd",
+            "error": "#ffb4ab",
+            "outline-variant": "#4c4354",
+            "on-tertiary-container": "#94d7ff",
+            "surface-variant": "#2d3449",
+            "text-primary": "#F8FAFC",
+            "surface-dim": "#0b1326",
+            "primary": "#dbb8ff",
+            "badge-fuchsia-border": "rgba(217, 70, 239, 0.35)",
+            "on-primary-fixed-variant": "#6600b7",
+            "text-muted": "#64748B",
+            "secondary-fixed-dim": "#fbabff",
+            "on-surface-variant": "#cec2d6",
+            "on-primary": "#470083",
+            "on-error-container": "#ffdad6",
+            "surface-bright": "#31394d",
+            "background": "#0b1326",
+            "on-primary-container": "#e1c4ff",
+            "tertiary-fixed-dim": "#7bd0ff",
+            "primary-fixed-dim": "#dbb8ff",
+            "badge-purple-border": "rgba(121, 40, 202, 0.35)"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "space-lg": "1.5rem",
+            "space-4xl": "6rem",
+            "space-md": "1rem",
+            "gutter-desktop": "2rem",
+            "space-2xs": "0.25rem",
+            "space-sm": "0.75rem",
+            "space-5xl": "8rem",
+            "gutter-mobile": "1rem",
+            "container-max-w": "1280px",
+            "space-3xl": "4rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "space-2xl": "3rem",
+            "space-3xs": "0.125rem"
+          },
+          fontFamily: {
+            "headline-xl": ["Plus Jakarta Sans"],
+            "label-caps": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "mono-code": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface-base text-on-surface font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- 1. NAVBAR -->
+<header class="fixed top-0 inset-x-0 z-50 bg-surface-card/85 backdrop-blur-xl border-b border-border-hairline shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="h-20 max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop flex items-center justify-between gap-space-md">
+<!-- Brand Logo -->
+<a class="flex items-center gap-space-sm group" href="#">
+<img alt="WebSign Logo" class="h-9 w-auto object-contain group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1Wucj8u48miGz8S087kRFzu-VEhEHM1dfMLd0qRdmqelIVnZbQN-DNvdSC6o5a8vp288jxRgQGKdQGnwN_L6Yp6AVsjK6J6BpWI0Xgd3Bh0n9lwPzT0-GbT7hP4vzAOKL5zOq0qCw_ZTOr0Y6ZEfynwFB6Fnrp1aOrtqpDtc7Un0tSdz97tKE7yNJm_fo54NfoeP-CvTtH7GK_44Vhh8X2WjeM7RRzwBQPnO-5Tr0RS84-7sNaBgZGs9HQ">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-extrabold flex items-center gap-1.5">
+            WebSign
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-gradient-end inline-block"></span>
+</span>
+<span class="font-label-caps text-[10px] text-text-muted tracking-widest uppercase -mt-1 font-semibold">Software &amp; SaaS</span>
+</div>
+</a>
+<!-- Main Navigation Menu -->
+<nav class="hidden lg:flex items-center gap-space-lg">
+<a class="inline-flex items-center gap-space-2xs text-text-primary font-label-md text-label-md hover:text-primary transition-colors" href="#sistemas">
+<span class="">Sistemas Propios</span>
+<span class="bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full">Nuevo</span>
+</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#desarrollo-medida">Desarrollo a Medida</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#casos-de-exito">Casos de Éxito</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#precios">Precios &amp; Promo</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors" href="#contacto">Contacto</a>
+</nav>
+<!-- Action CTAs -->
+<div class="flex items-center gap-space-sm">
+<a class="hidden sm:inline-flex items-center justify-center font-label-md text-label-md font-semibold text-on-surface-variant hover:text-white px-space-md py-space-xs rounded-full border border-border-hairline hover:border-outline transition-all" href="#desarrollo-medida">
+          Desarrollo a Medida
+        </a>
+<a class="inline-flex items-center gap-space-2xs font-label-md text-label-md font-bold text-white px-space-lg py-space-sm rounded-full bg-gradient-to-r from-accent-gradient-start via-[#9B2CDE] to-accent-gradient-end hover:shadow-[0_0_24px_rgba(217,70,239,0.55)] transition-all transform hover:scale-[1.02]" href="#contacto">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="">Probar Gratis</span>
+</a>
+</div>
+</div>
+</header>
+<main class="w-full pt-20 bg-surface-base">
+<!-- 2. HERO SECTION -->
+<section class="relative w-full overflow-hidden pb-space-4xl pt-space-2xl border-b border-border-hairline">
+<!-- Glow Gradients -->
+<div class="absolute -top-40 left-1/3 -translate-x-1/2 w-[800px] h-[500px] bg-primary-container/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="absolute top-1/4 right-0 w-[500px] h-[500px] bg-accent-gradient-end/15 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Left: High Impact Value Prop -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Overline Tag Badge -->
+<div class="inline-flex items-center gap-space-xs self-start px-space-md py-space-2xs rounded-full bg-surface-container-high border border-border-hairline shadow-sm">
+<span class="inline-block w-2 h-2 rounded-full bg-success animate-pulse"></span>
+<span class="font-label-caps text-label-caps uppercase text-primary tracking-wider font-semibold">SUITE DE SOFTWARE &amp; DESARROLLO A MEDIDA • v3.0</span>
+</div>
+<!-- Main Headline -->
+<h1 class="font-display-hero text-display-hero text-text-primary tracking-tight leading-tight">
+              Sistemas que simplifican tu negocio y <span class="bg-gradient-to-r from-primary via-secondary to-accent-gradient-end bg-clip-text text-transparent">software a medida.</span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl leading-relaxed">
+              Software listo para usar con suscripción mensual transparente y desarrollo de ingeniería personalizada para digitalizar procesos, ahorrar tiempo y escalar tu organización.
+            </p>
+<!-- Dual CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-xl py-space-md rounded-full font-label-md text-label-md font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end shadow-xl hover:shadow-[0_0_32px_rgba(217,70,239,0.55)] transition-all transform hover:-translate-y-0.5" href="#sistemas">
+<span class="">Ver Sistemas Propios</span>
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-xl py-space-md rounded-full font-label-md text-label-md font-semibold text-text-primary bg-surface-card-elevated hover:bg-surface-bright border border-border-hairline transition-all shadow-md" href="#desarrollo-medida">
+<span class="material-symbols-outlined text-primary text-[20px]">engineering</span>
+<span class="">Solicitar Desarrollo a Medida</span>
+</a>
+</div>
+<!-- Promo Teaser Badge -->
+<div class="inline-flex items-center gap-space-xs p-space-sm rounded-xl bg-gradient-to-r from-primary-container/20 to-accent-gradient-end/20 border border-badge-fuchsia-border self-start">
+<span class="text-xl">🎁</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">
+<strong class="text-secondary font-bold">Promoción Especial:</strong> 1° Mes 100% GRATIS • 2° Mes 50% OFF ($15.000) • Sin permanencia
+              </p>
+</div>
+</div>
+<!-- Right: Dual Pillar Showcase Mockups (SaaS live preview + Custom Code telemetry) -->
+<div class="lg:col-span-5 relative space-y-space-md">
+<!-- SaaS Live Preview Card (TiWeb / LuWeb quick metrics) -->
+<div class="w-full bg-surface-card/95 backdrop-blur-xl border border-border-hairline rounded-xl shadow-2xl p-space-lg relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm border-b border-border-hairline">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-badge-fuchsia-bg border border-badge-fuchsia-border flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm font-bold text-text-primary">TiWeb &amp; LuWeb Suite</h4>
+<span class="text-[11px] text-text-muted font-mono-code">SaaS en Tiempo Real</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps px-space-xs py-space-3xs rounded-full bg-success/20 text-success border border-success/30 font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-success animate-ping"></span> ONLINE
+                </span>
+</div>
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-sm">
+<div class="bg-surface-container-high/80 rounded-lg p-space-sm border border-border-hairline">
+<span class="text-[11px] text-text-muted font-medium">Ventas / Servicios Hoy</span>
+<div class="font-headline-md text-lg text-text-primary font-bold mt-0.5">$284.500</div>
+<span class="text-[11px] text-success font-semibold flex items-center gap-0.5 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +32% vs ayer
+                  </span>
+</div>
+<div class="bg-surface-container-high/80 rounded-lg p-space-sm border border-border-hairline">
+<span class="text-[11px] text-text-muted font-medium">Vehículos / Clientes</span>
+<div class="font-headline-md text-lg text-secondary font-bold mt-0.5">48 Activos</div>
+<span class="text-[11px] text-tertiary font-mono-code mt-0.5">Historial QR listo</span>
+</div>
+</div>
+<div class="mt-space-xs bg-surface-container-lowest/90 rounded-lg p-space-xs flex items-center justify-between text-[12px] text-text-secondary font-mono-code px-space-sm">
+<span class="flex items-center gap-1.5 text-text-primary">
+<span class="material-symbols-outlined text-secondary text-[16px]">qr_code_scanner</span>
+<span class="">Ficha digital compartida</span>
+</span>
+<span class="text-success font-semibold">Sincronizado</span>
+</div>
+</div>
+<!-- Custom Engineering Code & Telemetry Card -->
+<div class="w-full bg-surface-container-lowest/95 backdrop-blur-xl border border-badge-purple-border rounded-xl shadow-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between pb-space-2xs border-b border-border-hairline">
+<div class="flex items-center gap-space-2xs">
+<span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-warning inline-block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-success inline-block"></span>
+<span class="font-mono-code text-[11px] text-text-muted ml-space-xs">custom-architecture.ts</span>
+</div>
+<span class="font-label-caps text-[10px] px-space-xs py-0.5 rounded bg-badge-purple-bg text-primary border border-badge-purple-border">
+                  INGENIERÍA A MEDIDA
+                </span>
+</div>
+<div class="font-mono-code text-[12px] text-text-secondary leading-relaxed pt-1">
+<span class="text-secondary">const</span> enterprise = <span class="text-tertiary">createCustomCore</span>({<br>
+                &nbsp;&nbsp;architecture: <span class="text-primary-fixed-dim">"Microservices &amp; Multi-tenant"</span>,<br>
+                &nbsp;&nbsp;lighthouseScore: <span class="text-success font-bold">100</span>, uptimeSLA: <span class="text-success">"99.98%"</span><br>
+                });
+              </div>
+<div class="flex items-center justify-between pt-space-xs border-t border-border-hairline text-[11px]">
+<span class="text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px]">verified</span> Código 100% Propietario
+                </span>
+<span class="text-secondary font-mono-code font-bold">Zero-Downtime CI/CD</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. CREDENTIALS & TRUST BAR -->
+<section class="w-full py-space-lg bg-surface-container-lowest border-b border-border-hairline">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-badge-purple-bg border border-badge-purple-border flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">dataset</span>
+</div>
+<div>
+<div class="font-headline-sm text-base text-text-primary font-bold">+10 Soluciones</div>
+<div class="text-text-muted text-xs">Implementadas con éxito</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-badge-fuchsia-bg border border-badge-fuchsia-border flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</div>
+<div>
+<div class="font-headline-sm text-base text-text-primary font-bold">1 Mes de Prueba</div>
+<div class="text-text-muted text-xs">Sin costo ni tarjeta inicial</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-container/30 border border-primary/20 flex items-center justify-center text-primary-fixed-dim shrink-0">
+<span class="material-symbols-outlined text-[20px]">code_blocks</span>
+</div>
+<div>
+<div class="font-headline-sm text-base text-text-primary font-bold">100% Código Propio</div>
+<div class="text-text-muted text-xs">Arquitectura escalable y limpia</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high border border-border-hairline flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<div>
+<div class="font-headline-sm text-base text-text-primary font-bold">Soporte Directo</div>
+<div class="text-text-muted text-xs">Desde Córdoba, Argentina</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. SECTION 'ENCONTRÁ LA SOLUCIÓN PARA VOS' (Selector rápido) -->
+<section class="w-full py-space-3xl relative">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-space-2xl">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest font-semibold">Selector de Necesidades</span>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold mt-1 tracking-tight">
+            ¿Qué estás buscando resolver hoy?
+          </h2>
+<p class="font-body-md text-body-md text-text-secondary mt-space-2xs">
+            Hacé clic según tu necesidad para ir directo a la solución indicada:
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Card 1: Lubricentro -->
+<a class="bg-surface-card hover:bg-surface-card-elevated border border-border-hairline hover:border-badge-fuchsia-border rounded-xl p-space-lg flex flex-col justify-between transition-all transform hover:-translate-y-1 group shadow-md" href="#luweb">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-3xl">🚗</span>
+<span class="font-label-caps text-[11px] px-space-xs py-space-3xs rounded-full bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border font-semibold">
+                  Gestión Automotor
+                </span>
+</div>
+<h3 class="font-headline-sm text-base font-bold text-text-primary group-hover:text-secondary transition-colors">
+                Tengo un lubricentro o taller automotor
+              </h3>
+<p class="text-text-secondary font-body-sm text-xs mt-space-xs leading-relaxed">
+                Historial de servicios por patente, control de aceites y filtros, y acceso QR para el cliente desde el celular.
+              </p>
+</div>
+<div class="pt-space-md flex items-center text-primary text-xs font-semibold group-hover:translate-x-1 transition-transform">
+              Ir a LuWeb <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</div>
+</a>
+<!-- Card 2: Comercio General -->
+<a class="bg-surface-card hover:bg-surface-card-elevated border border-border-hairline hover:border-badge-purple-border rounded-xl p-space-lg flex flex-col justify-between transition-all transform hover:-translate-y-1 group shadow-md" href="#tiweb">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-3xl">🏪</span>
+<span class="font-label-caps text-[11px] px-space-xs py-space-3xs rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-semibold">
+                  Gestión Comercial
+                </span>
+</div>
+<h3 class="font-headline-sm text-base font-bold text-text-primary group-hover:text-primary transition-colors">
+                Necesito gestionar mi comercio o negocio
+              </h3>
+<p class="text-text-secondary font-body-sm text-xs mt-space-xs leading-relaxed">
+                Caja diaria, control de inventario en tiempo real, cuentas corrientes y reportes de rentabilidad limpios.
+              </p>
+</div>
+<div class="pt-space-md flex items-center text-primary text-xs font-semibold group-hover:translate-x-1 transition-transform">
+              Ir a TiWeb <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</div>
+</a>
+<!-- Card 3: Analítica de datos -->
+<a class="bg-surface-card hover:bg-surface-card-elevated border border-border-hairline hover:border-tertiary/30 rounded-xl p-space-lg flex flex-col justify-between transition-all transform hover:-translate-y-1 group shadow-md" href="#dataflow">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-3xl">📊</span>
+<span class="font-label-caps text-[11px] px-space-xs py-space-3xs rounded-full bg-tertiary-container/30 text-tertiary border border-tertiary/20 font-semibold">
+                  Business Intelligence
+                </span>
+</div>
+<h3 class="font-headline-sm text-base font-bold text-text-primary group-hover:text-tertiary transition-colors">
+                Busco analítica de ventas y compras inteligente
+              </h3>
+<p class="text-text-secondary font-body-sm text-xs mt-space-xs leading-relaxed">
+                Previsiones de stock, cálculo de ticket promedio y algoritmos para detectar oportunidades de ingresos.
+              </p>
+</div>
+<div class="pt-space-md flex items-center text-tertiary text-xs font-semibold group-hover:translate-x-1 transition-transform">
+              Ir a DataFlow <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</div>
+</a>
+<!-- Card 4: Casamientos / Bodas -->
+<a class="bg-surface-card hover:bg-surface-card-elevated border border-border-hairline hover:border-pink-400/30 rounded-xl p-space-lg flex flex-col justify-between transition-all transform hover:-translate-y-1 group shadow-md" href="#weddingmanager">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-3xl">💍</span>
+<span class="font-label-caps text-[11px] px-space-xs py-space-3xs rounded-full bg-pink-500/15 text-pink-300 border border-pink-500/30 font-semibold">
+                  Finanzas de Bodas
+                </span>
+</div>
+<h3 class="font-headline-sm text-base font-bold text-text-primary group-hover:text-pink-300 transition-colors">
+                Estoy organizando mi casamiento / boda
+              </h3>
+<p class="text-text-secondary font-body-sm text-xs mt-space-xs leading-relaxed">
+                Control de proveedores por rubro, presupuestos comparativos en vivo y seguimiento de cuotas y pagos.
+              </p>
+</div>
+<div class="pt-space-md flex items-center text-pink-300 text-xs font-semibold group-hover:translate-x-1 transition-transform">
+              Ir a WeddingManager <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</div>
+</a>
+<!-- Card 5: Invitaciones y RSVP -->
+<a class="bg-surface-card hover:bg-surface-card-elevated border border-border-hairline hover:border-secondary/30 rounded-xl p-space-lg flex flex-col justify-between transition-all transform hover:-translate-y-1 group shadow-md" href="#invitaciones">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-3xl">💌</span>
+<span class="font-label-caps text-[11px] px-space-xs py-space-3xs rounded-full bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border font-semibold">
+                  Gestión de Eventos
+                </span>
+</div>
+<h3 class="font-headline-sm text-base font-bold text-text-primary group-hover:text-secondary transition-colors">
+                Quiero crear invitaciones con RSVP y pagos
+              </h3>
+<p class="text-text-secondary font-body-sm text-xs mt-space-xs leading-relaxed">
+                Invitación web interactiva, confirmación de asistencia en tiempo real, menús especiales y regalos.
+              </p>
+</div>
+<div class="pt-space-md flex items-center text-secondary text-xs font-semibold group-hover:translate-x-1 transition-transform">
+              Ir a Invitación Digital <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</div>
+</a>
+<!-- Card 6: Desarrollo a Medida -->
+<a class="bg-gradient-to-br from-surface-card via-surface-container to-surface-card-elevated border border-primary/30 hover:border-primary rounded-xl p-space-lg flex flex-col justify-between transition-all transform hover:-translate-y-1 group shadow-md" href="#desarrollo-medida">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-3xl">⚙️</span>
+<span class="font-label-caps text-[11px] px-space-xs py-space-3xs rounded-full bg-primary-container/40 text-primary-fixed border border-primary/40 font-semibold">
+                  A Medida
+                </span>
+</div>
+<h3 class="font-headline-sm text-base font-bold text-text-primary group-hover:text-primary transition-colors">
+                Necesito un software totalmente a medida
+              </h3>
+<p class="text-text-secondary font-body-sm text-xs mt-space-xs leading-relaxed">
+                Ingeniería de software para flujos corporativos únicos, ERPs integrales, plataformas a gran escala y APIs.
+              </p>
+</div>
+<div class="pt-space-md flex items-center text-primary-fixed-dim text-xs font-semibold group-hover:translate-x-1 transition-transform">
+              Ir a Desarrollo Personalizado <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- 5. SECTION 'SOLUCIONES WEBSIGN: SISTEMAS LISTOS PARA USAR' (The Core SaaS Showcase) -->
+<section class="w-full py-space-4xl bg-surface-container-low/30 border-t border-border-hairline" id="sistemas">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<!-- Header -->
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-space-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-3xs rounded-full bg-badge-fuchsia-bg border border-badge-fuchsia-border text-secondary font-label-caps text-label-caps uppercase tracking-wider font-semibold">
+            PRODUCTOS SAAS WEBSIGN
+          </div>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold mt-space-xs tracking-tight">
+            Sistemas listos para usar en tu negocio u organización
+          </h2>
+<p class="font-body-lg text-body-lg text-text-secondary mt-space-2xs">
+            Implementación en menos de 24 horas, acceso desde cualquier dispositivo y soporte continuo.
+          </p>
+</div>
+<div class="flex flex-col gap-space-2xl">
+<!-- 1. LUWEB -->
+<div class="bg-surface-card border border-border-hairline rounded-2xl p-space-xl lg:p-space-2xl shadow-xl relative overflow-hidden" id="luweb">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border font-label-caps text-xs font-bold uppercase">
+                    SaaS Automotor
+                  </span>
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-xs font-bold">
+                    1 Mes Gratis
+                  </span>
+<span class="text-xs text-text-muted font-mono-code">v2.1 Web &amp; Mobile QR</span>
+</div>
+<h3 class="font-headline-xl text-2xl lg:text-3xl font-bold text-text-primary">
+                  LuWeb <span class="text-text-muted text-lg font-normal">— Sistema para Lubricentros &amp; Talleres</span>
+</h3>
+<p class="font-body-lg text-base text-text-secondary leading-relaxed">
+                  Digitalizá tu lubricentro y ofrecé a tus clientes un historial de mantenimiento siempre disponible. Agilizá la atención en fosa y aumentá la recurrencia de tus clientes con recordatorios inteligentes.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Gestión integral de clientes y flotas</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Registro ágil de servicios y filtros</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Historial de mantenimiento digitalizado</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Acceso del cliente vía código QR desde su celular sin apps</span>
+</div>
+</div>
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-md border-t border-border-hairline">
+<div class="flex flex-col">
+<span class="text-xs text-text-muted">Precio promocional</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-2xl font-bold text-text-primary">Desde $30.000</span>
+<span class="text-xs text-text-muted">/ mes</span>
+<span class="ml-2 text-xs font-bold text-secondary bg-badge-fuchsia-bg px-2 py-0.5 rounded-full">(1° Mes GRATIS)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="px-space-lg py-space-sm rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all" href="#contacto">
+                      Probar LuWeb Gratis
+                    </a>
+<a class="px-space-md py-space-sm rounded-full text-sm text-text-secondary hover:text-white border border-border-hairline hover:bg-surface-container transition-all" href="#contacto">
+                      Ver detalles
+                    </a>
+</div>
+</div>
+</div>
+<!-- Mockup Preview LuWeb -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-border-hairline rounded-xl p-space-md shadow-inner flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-hairline">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-success"></span>
+<span class="font-mono-code text-xs text-text-primary font-bold">Ficha Vehicular • AF 821 CD</span>
+</div>
+<span class="text-[10px] text-tertiary bg-tertiary-container/30 px-1.5 py-0.5 rounded font-mono-code">Toyota Hilux 2.8</span>
+</div>
+<div class="bg-surface-card rounded-lg p-space-sm border border-border-hairline flex items-center justify-between">
+<div>
+<span class="text-[11px] text-text-muted block">Último Servicio Realizado</span>
+<span class="text-xs font-bold text-text-primary">Cambio de Aceite Sintético 5W30 + 4 Filtros</span>
+<span class="text-[11px] text-secondary font-mono-code block mt-0.5">Odómetro: 124.500 km</span>
+</div>
+<div class="text-right">
+<span class="text-[11px] text-text-muted block">Próximo Service</span>
+<span class="text-xs font-bold text-warning font-mono-code">134.500 km</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 bg-white rounded p-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-base text-[28px]">qr_code_2</span>
+</div>
+<div>
+<span class="text-xs font-bold text-text-primary block">QR Sticker Digital para Parabrisas</span>
+<span class="text-[11px] text-text-muted">El cliente escanea y ve su libreta digital</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-success text-[20px]">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. TIWEB -->
+<div class="bg-surface-card border border-border-hairline rounded-2xl p-space-xl lg:p-space-2xl shadow-xl relative overflow-hidden" id="tiweb">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-xs font-bold uppercase">
+                    Gestión Comercial
+                  </span>
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border font-label-caps text-xs font-bold">
+                    1 Mes Gratis
+                  </span>
+<span class="text-xs text-text-muted font-mono-code">SaaS Pymes &amp; Comercios</span>
+</div>
+<h3 class="font-headline-xl text-2xl lg:text-3xl font-bold text-text-primary">
+                  TiWeb <span class="text-text-muted text-lg font-normal">— Sistema de Gestión Integral para Negocios</span>
+</h3>
+<p class="font-body-lg text-base text-text-secondary leading-relaxed">
+                  Gestioná tu negocio desde un solo lugar: stock, ventas y administración sin complicaciones. Una evolución moderna e intuitiva diseñada para comercios minoristas y mayoristas que necesitan orden y control total.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="">Control en tiempo real de inventario y compras</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="">Registro rápido de caja y facturación diaria</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="">Cuentas corrientes y cartera de clientes</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="">Reportes automáticos y métricas de rentabilidad</span>
+</div>
+</div>
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-md border-t border-border-hairline">
+<div class="flex flex-col">
+<span class="text-xs text-text-muted">Plan estándar comercial</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-2xl font-bold text-text-primary">Desde $30.000</span>
+<span class="text-xs text-text-muted">/ mes</span>
+<span class="ml-2 text-xs font-bold text-primary bg-badge-purple-bg px-2 py-0.5 rounded-full">(1° Mes GRATIS)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="px-space-lg py-space-sm rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all" href="#contacto">
+                      Probar TiWeb Gratis
+                    </a>
+<a class="px-space-md py-space-sm rounded-full text-sm text-text-secondary hover:text-white border border-border-hairline hover:bg-surface-container transition-all" href="#contacto">
+                      Solicitar Demo
+                    </a>
+</div>
+</div>
+</div>
+<!-- Mockup Preview TiWeb -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-border-hairline rounded-xl p-space-md shadow-inner flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-hairline">
+<span class="font-mono-code text-xs text-text-primary font-bold">Resumen de Ventas Hoy</span>
+<span class="font-label-caps text-[10px] text-success bg-success/15 px-1.5 py-0.5 rounded">Caja Cuadrada</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="bg-surface-card rounded p-space-xs border border-border-hairline">
+<span class="text-[10px] text-text-muted block">Total Facturado</span>
+<span class="text-base font-bold text-text-primary font-mono-code">$412.300</span>
+</div>
+<div class="bg-surface-card rounded p-space-xs border border-border-hairline">
+<span class="text-[10px] text-text-muted block">Margen Neto Estimado</span>
+<span class="text-base font-bold text-success font-mono-code">34.8%</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-lg p-space-xs flex flex-col gap-1 border border-border-hairline">
+<div class="flex items-center justify-between text-[11px] text-text-muted">
+<span class="text-warning flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[13px]">warning</span> Alerta de Stock Mínimo
+                    </span>
+<span class="">3 ítems</span>
+</div>
+<div class="flex items-center justify-between text-xs text-text-secondary bg-surface-container px-2 py-1 rounded">
+<span class="">Filtro Aire PH3593A</span>
+<span class="text-error font-mono-code font-bold">2 unids rest.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. DATAFLOW -->
+<div class="bg-surface-card border border-border-hairline rounded-2xl p-space-xl lg:p-space-2xl shadow-xl relative overflow-hidden" id="dataflow">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-space-3xs rounded-full bg-tertiary-container/30 text-tertiary border border-tertiary/20 font-label-caps text-xs font-bold uppercase">
+                    SaaS Analítico
+                  </span>
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border font-label-caps text-xs font-bold">
+                    1 Mes Gratis
+                  </span>
+<span class="text-xs text-text-muted font-mono-code">BI &amp; Machine Metrics</span>
+</div>
+<h3 class="font-headline-xl text-2xl lg:text-3xl font-bold text-text-primary">
+                  DataFlow <span class="text-text-muted text-lg font-normal">— Business Intelligence para Comercios</span>
+</h3>
+<p class="font-body-lg text-base text-text-secondary leading-relaxed">
+                  Analítica predictiva de ingresos, compras inteligentes y fidelización automatizada. Transformá números dispersos en decisiones claras sobre qué productos comprar, cuándo reponer y quiénes son tus clientes más rentables.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+<span class="">Algoritmos de predicción de reposición de stock</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+<span class="">Segmentación de clientes recurrentes y ticket promedio</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+<span class="">Conciliación de métodos de pago y flujo de caja</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+<span class="">Alertas automáticas de desvíos financieros</span>
+</div>
+</div>
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-md border-t border-border-hairline">
+<div class="flex flex-col">
+<span class="text-xs text-text-muted">Plan analítica avanzada</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-2xl font-bold text-text-primary">Desde $30.000</span>
+<span class="text-xs text-text-muted">/ mes</span>
+<span class="ml-2 text-xs font-bold text-tertiary bg-tertiary-container/30 px-2 py-0.5 rounded-full">(1° Mes GRATIS)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="px-space-lg py-space-sm rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all" href="#contacto">
+                      Probar DataFlow Gratis
+                    </a>
+</div>
+</div>
+</div>
+<!-- Mockup Preview DataFlow -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-border-hairline rounded-xl p-space-md shadow-inner flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-hairline">
+<span class="font-mono-code text-xs text-text-primary font-bold">Predictive Cashflow</span>
+<span class="font-label-caps text-[10px] text-tertiary font-mono-code">Next 30 Days</span>
+</div>
+<div class="bg-surface-card rounded p-space-sm border border-border-hairline flex items-center justify-between">
+<div>
+<span class="text-[10px] text-text-muted block">Ingresos Proyectados</span>
+<span class="text-base font-bold text-tertiary font-mono-code">$2.850.000</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-text-muted block">Compras Sugeridas</span>
+<span class="text-base font-bold text-text-primary font-mono-code">$1.120.000</span>
+</div>
+</div>
+<!-- SVG Mini Trend Line -->
+<div class="bg-surface-container-high rounded-lg p-space-sm flex flex-col gap-1 border border-border-hairline">
+<span class="text-[10px] text-text-muted">Rendimiento Operativo vs Costos</span>
+<svg class="w-full h-12 text-tertiary" fill="none" viewBox="0 0 200 40">
+<path d="M0 32 Q 40 28, 80 18 T 140 12 T 200 4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle class="fill-secondary" cx="200" cy="4" r="3"></circle>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. WEDDING MANAGER -->
+<div class="bg-surface-card border border-pink-500/20 rounded-2xl p-space-xl lg:p-space-2xl shadow-xl relative overflow-hidden" id="weddingmanager">
+<!-- Subtle warm/champagne glow -->
+<div class="absolute -right-20 -top-20 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-space-3xs rounded-full bg-pink-500/15 text-pink-300 border border-pink-500/30 font-label-caps text-xs font-bold uppercase">
+                    Finanzas de Eventos &amp; Bodas
+                  </span>
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-xs font-bold">
+                    1 Mes Gratis
+                  </span>
+</div>
+<h3 class="font-headline-xl text-2xl lg:text-3xl font-bold text-text-primary">
+                  WeddingManager <span class="text-text-muted text-lg font-normal">— Planificación Económica para Bodas</span>
+</h3>
+<p class="font-body-lg text-base text-text-secondary leading-relaxed">
+                  Todos los números de tu boda, organizados en un solo lugar. Evitá sorpresas de último momento, controlá los presupuestos de proveedores y mantené tus pagos en cuotas al día sin planillas confusas.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-pink-300 text-[18px]">verified</span>
+<span class="">Gestión y categorización de proveedores por rubro (salón, catering, foto)</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-pink-300 text-[18px]">verified</span>
+<span class="">Registro y comparación de presupuestos en vivo</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-pink-300 text-[18px]">verified</span>
+<span class="">Control de pagos realizados y cuotas pendientes</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-pink-300 text-[18px]">verified</span>
+<span class="">Tablero de desvío presupuestario global en tiempo real</span>
+</div>
+</div>
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-md border-t border-border-hairline">
+<div class="flex flex-col">
+<span class="text-xs text-text-muted">Acceso completo</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-2xl font-bold text-text-primary">Desde $30.000</span>
+<span class="text-xs text-text-muted">/ mes</span>
+<span class="ml-2 text-xs font-bold text-pink-300 bg-pink-500/20 px-2 py-0.5 rounded-full">(1° Mes GRATIS)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="px-space-lg py-space-sm rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-[#B83280] to-accent-gradient-end hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all" href="#contacto">
+                      Probar WeddingManager
+                    </a>
+</div>
+</div>
+</div>
+<!-- Mockup Preview WeddingManager -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-pink-500/20 rounded-xl p-space-md shadow-inner flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-hairline">
+<span class="font-mono-code text-xs text-pink-200 font-bold">Presupuesto Boda • Sofia &amp; Lucas</span>
+<span class="text-[10px] text-pink-300 bg-pink-500/20 px-2 py-0.5 rounded font-mono-code">Faltan 84 días</span>
+</div>
+<div class="bg-surface-card rounded p-space-sm border border-border-hairline">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-text-muted">Presupuesto Ejecutado</span>
+<span class="font-bold text-text-primary font-mono-code">$6.420.000 / $8.000.000</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-pink-400 to-accent-gradient-end h-full rounded-full w-[80%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-high rounded p-space-xs flex flex-col gap-1 text-xs">
+<div class="flex justify-between items-center py-0.5 border-b border-border-hairline">
+<span class="text-text-primary">Catering &amp; Barra</span>
+<span class="text-success font-semibold">Pagado 3/4</span>
+</div>
+<div class="flex justify-between items-center py-0.5">
+<span class="text-text-primary">Fotografía &amp; Video</span>
+<span class="text-warning font-semibold">Cuota vence en 5 días</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. INVITACIÓN DIGITAL & RSVP -->
+<div class="bg-surface-card border border-border-hairline rounded-2xl p-space-xl lg:p-space-2xl shadow-xl relative overflow-hidden" id="invitaciones">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-fuchsia-bg text-secondary border border-badge-fuchsia-border font-label-caps text-xs font-bold uppercase">
+                    Plataforma de Eventos
+                  </span>
+<span class="px-space-sm py-space-3xs rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-xs font-bold">
+                    1 Mes Gratis
+                  </span>
+<span class="text-xs text-text-muted font-mono-code">Web Interactive RSVP</span>
+</div>
+<h3 class="font-headline-xl text-2xl lg:text-3xl font-bold text-text-primary">
+                  Invitación Digital &amp; RSVP <span class="text-text-muted text-lg font-normal">— Gestión Integral de Invitados</span>
+</h3>
+<p class="font-body-lg text-base text-text-secondary leading-relaxed">
+                  Mucho más que una tarjeta digital: gestioná tus invitados y tu evento desde un solo lugar. Envío personalizado, confirmaciones automáticas, registro de restricciones alimentarias y recepción de regalos por transferencia directa sin comisiones.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Creación de invitación web interactiva y personalizada</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Confirmación de asistencia (RSVP) en tiempo real</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Menús especiales (celíacos, vegetarianos) y datos de mesa</span>
+</div>
+<div class="flex items-start gap-space-xs text-text-primary text-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="">Gestión de regalos y pasarela de transferencias integrada</span>
+</div>
+</div>
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-md border-t border-border-hairline">
+<div class="flex flex-col">
+<span class="text-xs text-text-muted">Por evento / mensual</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-2xl font-bold text-text-primary">Desde $30.000</span>
+<span class="text-xs text-text-muted">/ evento</span>
+<span class="ml-2 text-xs font-bold text-secondary bg-badge-fuchsia-bg px-2 py-0.5 rounded-full">(1° Mes GRATIS)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="px-space-lg py-space-sm rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all" href="#contacto">
+                      Crear Invitación Gratis
+                    </a>
+</div>
+</div>
+</div>
+<!-- Mockup Preview Invitación Digital -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-border-hairline rounded-xl p-space-md shadow-inner flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-hairline">
+<span class="font-mono-code text-xs text-text-primary font-bold">Control de Invitados RSVP</span>
+<span class="text-[10px] text-success bg-success/20 px-1.5 py-0.5 rounded font-bold">142 Confirmados</span>
+</div>
+<div class="grid grid-cols-3 gap-space-2xs text-center">
+<div class="bg-surface-card p-space-xs rounded border border-border-hairline">
+<span class="text-[10px] text-text-muted block">Confirmados</span>
+<span class="text-sm font-bold text-success">142</span>
+</div>
+<div class="bg-surface-card p-space-xs rounded border border-border-hairline">
+<span class="text-[10px] text-text-muted block">Rechazados</span>
+<span class="text-sm font-bold text-error">18</span>
+</div>
+<div class="bg-surface-card p-space-xs rounded border border-border-hairline">
+<span class="text-[10px] text-text-muted block">Pendientes</span>
+<span class="text-sm font-bold text-warning">24</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded p-space-xs text-xs flex items-center justify-between">
+<span class="text-text-muted">Dietas especiales:</span>
+<span class="text-primary font-mono-code">11 celíacos • 8 vegetarianos</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. SECTION 'PRECIOS TRANSPARENTES: EMPEZÁ SIN RIESGO' -->
+<section class="w-full py-space-4xl relative overflow-hidden" id="precios">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="text-center max-w-3xl mx-auto mb-space-3xl flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest font-semibold">Modelo de Suscripción Simple</span>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold tracking-tight">
+            Empezá sin riesgo. Sin permanencia ni letra chica.
+          </h2>
+<p class="font-body-lg text-body-lg text-text-secondary">
+            Probá cualquiera de nuestros sistemas durante un mes completo sin costo. Si decidís continuar, tu segundo mes tiene un 50% de descuento.
+          </p>
+</div>
+<!-- 3-Step Ladder Card -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg mb-space-2xl">
+<!-- Step 1 -->
+<div class="bg-surface-card border-2 border-primary/40 rounded-2xl p-space-xl flex flex-col justify-between shadow-xl relative">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container px-space-md py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              Paso 1 • Comprobación
+            </div>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<span class="font-headline-sm text-sm text-text-muted uppercase tracking-wider">Mes 1</span>
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-4xl lg:text-5xl font-extrabold text-success">100% GRATIS</span>
+</div>
+<p class="text-text-secondary text-sm leading-relaxed">
+                Accedé al sistema completo para tu negocio. Importamos tus datos iniciales y te capacitamos para comenzar a usarlo desde el primer día.
+              </p>
+<div class="pt-space-xs flex items-center gap-1.5 text-xs text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Sin costo inicial • Probalo antes de contratar</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<span class="block text-center text-xs text-text-muted font-mono-code">Garantía total de satisfacción</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-card border-2 border-secondary/40 rounded-2xl p-space-xl flex flex-col justify-between shadow-xl relative">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-secondary-container text-on-secondary-container px-space-md py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              Paso 2 • Adopción
+            </div>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<span class="font-headline-sm text-sm text-text-muted uppercase tracking-wider">Mes 2</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-hero text-4xl lg:text-5xl font-extrabold text-secondary">$15.000</span>
+<span class="text-xs text-text-muted font-mono-code line-through">$30.000</span>
+</div>
+<p class="text-text-secondary text-sm leading-relaxed">
+                Beneficio exclusivo para afianzar el sistema en tu equipo con un <strong class="text-secondary">50% de descuento</strong> ya aplicado en tu factura.
+              </p>
+<div class="pt-space-xs flex items-center gap-1.5 text-xs text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">50% OFF aplicado automáticamente</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<span class="block text-center text-xs text-text-muted font-mono-code">Acompañamiento continuo incluido</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-card border border-border-hairline rounded-2xl p-space-xl flex flex-col justify-between shadow-xl relative">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-surface-container-high border border-border-hairline text-text-secondary px-space-md py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              Paso 3 • Continuidad
+            </div>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<span class="font-headline-sm text-sm text-text-muted uppercase tracking-wider">Mes 3 en adelante</span>
+<div class="flex items-baseline gap-1">
+<span class="font-display-hero text-4xl lg:text-5xl font-extrabold text-text-primary">$30.000</span>
+<span class="text-xs text-text-muted">/ mes</span>
+</div>
+<p class="text-text-secondary text-sm leading-relaxed">
+                Cuota mensual accesible, fija y sin sorpresas. Incluye todas las actualizaciones de software, infraestructura cloud y soporte técnico.
+              </p>
+<div class="pt-space-xs flex items-center gap-1.5 text-xs text-text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Precio final transparente • Sin cláusulas de permanencia</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<span class="block text-center text-xs text-text-muted font-mono-code">Cancelación libre en 1 clic</span>
+</div>
+</div>
+</div>
+<!-- What is included banner -->
+<div class="bg-surface-container rounded-xl p-space-lg border border-border-hairline flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-headline-sm text-base text-text-primary font-bold">¿Qué incluye cada sistema contratado?</span>
+<div class="flex flex-wrap gap-x-space-md gap-y-1 text-xs text-text-secondary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-success text-[15px]">check</span> Acceso ilimitado a funciones</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-success text-[15px]">check</span> Actualizaciones continuas</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-success text-[15px]">check</span> Soporte directo por WhatsApp</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-success text-[15px]">check</span> Backups diarios en la nube</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<a class="px-space-xl py-space-sm rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-lg transition-all" href="#contacto">
+              Elegir Sistema y Empezar Gratis
+            </a>
+<a class="px-space-md py-space-sm rounded-full text-xs text-text-secondary hover:text-white border border-border-hairline transition-all" href="#contacto">
+              Hacer una consulta comercial
+            </a>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. SECTION '¿NECESITÁS ALGO DIFERENTE? DESARROLLO DE SOFTWARE A MEDIDA' -->
+<section class="w-full py-space-4xl bg-surface-container-lowest border-y border-border-hairline relative" id="desarrollo-medida">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-3xs rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-xs font-bold uppercase self-start">
+              INGENIERÍA EXCLUSIVA
+            </div>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold tracking-tight">
+              ¿Necesitás algo diferente? Desarrollo de Software a Medida.
+            </h2>
+<p class="font-body-lg text-body-lg text-text-secondary leading-relaxed">
+              Si ninguno de nuestros sistemas estándar cubre el 100% de tu flujo de trabajo, diseñamos y construimos una solución tecnológica exclusiva para tu empresa u organización.
+            </p>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">cloud</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-text-primary">Arquitectura Cloud Escalable</h4>
+<p class="text-xs text-text-secondary">Desarrollo moderno con React, Node.js, Next.js, bases de datos SQL y NoSQL optimizadas para alto rendimiento y cero fricción.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-text-primary">Sistemas de Gestión ERP &amp; CRM Propios</h4>
+<p class="text-xs text-text-secondary">Automatización de logística interna, liquidaciones, inventarios multidepósito y paneles analíticos directivos.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[18px]">api</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-text-primary">E-commerce de Alta Conversión &amp; APIs</h4>
+<p class="text-xs text-text-secondary">Integraciones directas con pasarelas de pago (Mercado Pago, Stripe), facturación electrónica AFIP y software existente.</p>
+</div>
+</div>
+</div>
+<div class="pt-space-sm">
+<a class="inline-flex items-center gap-space-xs px-space-xl py-space-md rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-[0_0_24px_rgba(217,70,239,0.5)] transition-all" href="#contacto">
+<span class="">Solicitar Asesoría &amp; Cotización a Medida</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Technical Specs Visual Card -->
+<div class="lg:col-span-6 bg-surface-card border border-border-hairline rounded-2xl p-space-xl shadow-2xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-border-hairline">
+<span class="font-label-caps text-xs font-mono-code text-text-muted">METODOLOGÍA DE DESARROLLO</span>
+<span class="text-xs text-primary font-mono-code">Ágil • Sprints Quincenales</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container p-space-sm rounded-lg">
+<span class="text-xs text-text-muted block">1. Diagnóstico &amp; UX</span>
+<span class="text-sm font-bold text-text-primary">Definición de requerimientos y prototipo Figma funcional.</span>
+</div>
+<div class="bg-surface-container p-space-sm rounded-lg">
+<span class="text-xs text-text-muted block">2. Arquitectura de Datos</span>
+<span class="text-sm font-bold text-text-primary">Modelado relacional y APIs seguras preparadas para crecer.</span>
+</div>
+<div class="bg-surface-container p-space-sm rounded-lg">
+<span class="text-xs text-text-muted block">3. Desarrollo &amp; QA</span>
+<span class="text-sm font-bold text-text-primary">Testing automatizado y despliegue continuo sin interrupciones.</span>
+</div>
+<div class="bg-surface-container p-space-sm rounded-lg">
+<span class="text-xs text-text-muted block">4. Entrega de Código</span>
+<span class="text-sm font-bold text-text-primary">100% propietario para tu empresa, documentado y sin ataduras.</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded p-space-xs flex items-center justify-between text-xs text-text-muted">
+<span class="">Stack técnico principal:</span>
+<span class="text-text-primary font-mono-code">React • Next.js • Node.js • MongoDB • PostgreSQL</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. SECTION 'CASOS DE ÉXITO REALES' (Projects portfolio separated from SaaS products) -->
+<section class="w-full py-space-4xl" id="casos-de-exito">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-3xl">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-semibold">
+              PORTAFOLIO DE DESARROLLOS A MEDIDA
+            </span>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold tracking-tight">
+              Casos de Éxito Reales
+            </h2>
+<p class="font-body-lg text-body-lg text-text-secondary">
+              Conocé algunos de los sistemas empresariales y plataformas institucionales creadas por nuestro equipo:
+            </p>
+</div>
+<a class="text-xs font-bold text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#contacto">
+            Consultar por tu proyecto <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- 1. Colegio Mark Twain -->
+<div class="bg-surface-card border border-border-hairline rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between">
+<div>
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Colegio Mark Twain interface on laptop screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgGX7b3icz-Zp-QKAtIidCM0J0llK1TfqxaGrSN2ug6DInbEB5sWsdW3fjkoKVz6f22Ex3RwgKD4ZwHsNA5jPNiYvfBd-mjOoltwod3P2fsDkSdbRyqqo5U1jx0Gksdlu2i-Vkf3pcv3X9T5nz-gxyjg6oZEJGLhw90w-tHoLcgbK_OeLLKxp1_clGm-NfD9DYcHNE8kzs_VYnnYJjakvez55qpzvVOcYXGB3RGXNexu8MFEfiZsnU">
+<span class="absolute top-2.5 left-2.5 px-space-xs py-0.5 rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-[10px] font-bold uppercase">
+                  Desarrollo a Medida
+                </span>
+</div>
+<div class="p-space-md flex flex-col gap-1.5">
+<h3 class="font-headline-md text-base text-text-primary font-bold">Colegio Mark Twain</h3>
+<p class="font-body-md text-xs text-text-secondary leading-relaxed">
+                  Sistema completo para generación algorítmica de horarios escolares, gestión de divisiones, espacios curriculares y restricciones docentes complejas.
+                </p>
+</div>
+</div>
+<div class="p-space-md pt-0 text-[11px] text-text-muted flex justify-between border-t border-border-hairline mt-space-xs pt-space-xs">
+<span class="">Optimización algorítmica</span>
+<span class="text-success font-semibold">En Producción</span>
+</div>
+</div>
+<!-- 2. TVM Group -->
+<div class="bg-surface-card border border-border-hairline rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between">
+<div>
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="TVM Group enterprise portal dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDumlPCOU-f6Po8pWSC87yOVn5d6s3LKtqoTwUW1Ti5s8BXxIlmeGzEMmlZLm2KFTBNrUrCW_1gOfE-YuyKqpU84qYfXU4aZ2XXITzdLsVs24AcjOcBcHUB87f97c95g5ta2mT7Bq9R9GU7JJmiIKy2PzvZkDM-Y4BQBjyyhY51WqvxJrG2ZIlsgDfNnLRbbmGoQLr3hU8QZQKRDcbm5aU9nRGgvXsM02DoK6m6BmOve4DxuoS6_jup">
+<span class="absolute top-2.5 left-2.5 px-space-xs py-0.5 rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-[10px] font-bold uppercase">
+                  Desarrollo a Medida
+                </span>
+</div>
+<div class="p-space-md flex flex-col gap-1.5">
+<h3 class="font-headline-md text-base text-text-primary font-bold">TVM Group</h3>
+<p class="font-body-md text-xs text-text-secondary leading-relaxed">
+                  Sistema ERP integral a medida concebido para la gestión corporativa unificada, finanzas y control operativo de múltiples compañías del grupo.
+                </p>
+</div>
+</div>
+<div class="p-space-md pt-0 text-[11px] text-text-muted flex justify-between border-t border-border-hairline mt-space-xs pt-space-xs">
+<span class="">Multi-empresa • Finanzas</span>
+<span class="text-secondary font-semibold">Enterprise ERP</span>
+</div>
+</div>
+<!-- 3. Orquesta Mediterránea -->
+<div class="bg-surface-card border border-border-hairline rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between">
+<div>
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Orquesta Mediterranea software management" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5soUy9bIv1BxhJisSaOedV2AXi0oxAM94DasMxQPO0qIxhqJnIdHSjOjiK6Zxmciz_d0NNMuwM4_Xc_8X2tNFBRuN0R8TPVhZyFqfJvF5Epm_SDqzfOf4T0paE1f1u7R4wOODyGpAGVn9PGXmd20cxYd1X6-SvtPMo15SAhlmHR2iuMEVq8-jrJoSHJsenb55YiMu6Cx-0eaLvBQEBLsfHc7In9LfZ4_pOrLZVxJTjY9VcOa8FWQt">
+<span class="absolute top-2.5 left-2.5 px-space-xs py-0.5 rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-[10px] font-bold uppercase">
+                  Desarrollo a Medida
+                </span>
+</div>
+<div class="p-space-md flex flex-col gap-1.5">
+<h3 class="font-headline-md text-base text-text-primary font-bold">Orquesta Mediterránea de Córdoba</h3>
+<p class="font-body-md text-xs text-text-secondary leading-relaxed">
+                  Software para administración de alumnos, inventario de instrumentos musicales, asignación de docentes y seguimiento automatizado de comodatos.
+                </p>
+</div>
+</div>
+<div class="p-space-md pt-0 text-[11px] text-text-muted flex justify-between border-t border-border-hairline mt-space-xs pt-space-xs">
+<span class="">Gestión de comodatos</span>
+<span class="text-tertiary font-semibold">Activos Culturales</span>
+</div>
+</div>
+<!-- 4. Rous Pastelería -->
+<div class="bg-surface-card border border-border-hairline rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between">
+<div>
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Rous Pasteleria business operations management platform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9_0gUhR1E0IzqrK6D341Kol88Ya7ftuKQdK7uVrRYfam3BBHtgmbiPbNyyyzKUvhBLGL9KAQX5yjZLtaQqbmKwT9X9UlFZyuERdPC_4e-i9qbeX-vMQzzvMMOC8ixRFo3Xiep8PFbQrysik1Zd-HfEp51MeKvx-oUrdmsAkqWRq_CE7pXUniTByxzZW7v96d8F4ouqnM3avaK1hAdc5bgRuNL4hLRrur5RgdLwP9XrwrZwAjGCiA5">
+<span class="absolute top-2.5 left-2.5 px-space-xs py-0.5 rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-[10px] font-bold uppercase">
+                  Desarrollo a Medida
+                </span>
+</div>
+<div class="p-space-md flex flex-col gap-1.5">
+<h3 class="font-headline-md text-base text-text-primary font-bold">Rous Pastelería</h3>
+<p class="font-body-md text-xs text-text-secondary leading-relaxed">
+                  Sistema de gestión comercial con control riguroso de recetas, órdenes de compra de insumos, costos reales y márgenes de ganancia neta.
+                </p>
+</div>
+</div>
+<div class="p-space-md pt-0 text-[11px] text-text-muted flex justify-between border-t border-border-hairline mt-space-xs pt-space-xs">
+<span class="">Costos e insumos</span>
+<span class="text-secondary font-semibold">Gastronomía Tech</span>
+</div>
+</div>
+<!-- 5. Rous Clothes & Corona Roja -->
+<div class="bg-surface-card border border-border-hairline rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between">
+<div>
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Rous Clothes e-commerce showcase" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg7XG1O8xOytFjasXCG7M4oFwXqEfl96E0xhZAUbR2ucaRp4pypLK6WVgkRIZ-F_stK3sA3Yqk7HsII62RRHQW6uph_o4J_fZNW9gVbKMHfqzYXLOjjSMkdoG86wYHv4rxUKUunrRV2HeqR9GjcBQaZgVkkEqdHTFhMtPx_7CAjdMe3m1zsRrmqfpoEQuLp8lwu-cKG7osITsGMzW-bWFqQiw9e08D9MmF3g_5wrftoXxqeodnrbCd">
+<span class="absolute top-2.5 left-2.5 px-space-xs py-0.5 rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-[10px] font-bold uppercase">
+                  Desarrollo a Medida
+                </span>
+</div>
+<div class="p-space-md flex flex-col gap-1.5">
+<h3 class="font-headline-md text-base text-text-primary font-bold">Rous Clothes &amp; Corona Roja</h3>
+<p class="font-body-md text-xs text-text-secondary leading-relaxed">
+                  Tiendas online de alto rendimiento con catálogo de variantes avanzadas, pasarelas de pago locales integradas y panel de despacho rápido.
+                </p>
+</div>
+</div>
+<div class="p-space-md pt-0 text-[11px] text-text-muted flex justify-between border-t border-border-hairline mt-space-xs pt-space-xs">
+<span class="">E-commerce &amp; Pasarelas</span>
+<span class="text-primary font-semibold">Ventas 24/7</span>
+</div>
+</div>
+<!-- 6. Polo Educativo Córdoba -->
+<div class="bg-surface-card border border-border-hairline rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between">
+<div>
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Technical institutional portals for schools" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4Yq9yMPJXh6TphlB8_cur2hRMrt7SXshnaKUFp3CVh1lkQxg5bVYlpDftzis1L8b9SXd-P7GL9pMhU1setaiOg7kx-CIVkF6v22KMNnKECBjlgUnB9kNbU2N6TC_oTiUubUmc85t_x_UZigkc43J2BH1j7S7xwtItXZ0IoOzhry7m3IxQDzeyH2X27dkzPQ3KsohNLEY7LmpaOEXbiyTqdOhfI_4RQjV9vLNvE708OGdFbKQfR9ZV">
+<span class="absolute top-2.5 left-2.5 px-space-xs py-0.5 rounded-full bg-badge-purple-bg text-primary border border-badge-purple-border font-label-caps text-[10px] font-bold uppercase">
+                  Desarrollo a Medida
+                </span>
+</div>
+<div class="p-space-md flex flex-col gap-1.5">
+<h3 class="font-headline-md text-base text-text-primary font-bold">Polo Educativo Córdoba (IPET &amp; José Hernández)</h3>
+<p class="font-body-md text-xs text-text-secondary leading-relaxed">
+                  Ecosistema web institucional, gestión de dominios .edu.ar, integración de Google Workspace para docentes y plataforma de revista escolar.
+                </p>
+</div>
+</div>
+<div class="p-space-md pt-0 text-[11px] text-text-muted flex justify-between border-t border-border-hairline mt-space-xs pt-space-xs">
+<span class="">Google Workspace Suite</span>
+<span class="text-primary font-semibold">Institucional</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. SECTION 'POR QUÉ ELEGIR WEBSIGN' -->
+<section class="w-full py-space-4xl bg-surface-container-low/40 border-t border-border-hairline">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="text-center max-w-3xl mx-auto mb-space-3xl flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider font-semibold">Nuestra Propuesta</span>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold tracking-tight">
+            ¿Por Qué Elegir a WebSign?
+          </h2>
+<p class="font-body-lg text-body-lg text-text-secondary">
+            Combinamos la inmediatez de productos SaaS listos para trabajar con la capacidad técnica de un estudio de ingeniería de software personalizado.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<div class="bg-surface-card border border-border-hairline rounded-xl p-space-lg flex flex-col gap-space-sm shadow-md hover:border-badge-fuchsia-border transition-all">
+<div class="w-12 h-12 rounded-xl bg-badge-fuchsia-bg border border-badge-fuchsia-border flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<h3 class="font-headline-md text-base font-bold text-text-primary">Software Real para Negocios Reales</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+              Herramientas diseñadas a partir de problemas operativos concretos: nada de interfaces complejas o funciones que jamás vas a usar.
+            </p>
+</div>
+<div class="bg-surface-card border border-border-hairline rounded-xl p-space-lg flex flex-col gap-space-sm shadow-md hover:border-badge-purple-border transition-all">
+<div class="w-12 h-12 rounded-xl bg-badge-purple-bg border border-badge-purple-border flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<h3 class="font-headline-md text-base font-bold text-text-primary">Código Limpio &amp; Escalable</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+              Tanto en nuestros SaaS como en desarrollos a medida utilizamos tecnologías modernas que garantizan velocidad de carga y estabilidad.
+            </p>
+</div>
+<div class="bg-surface-card border border-border-hairline rounded-xl p-space-lg flex flex-col gap-space-sm shadow-md hover:border-tertiary/30 transition-all">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/30 border border-tertiary/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">diversity_3</span>
+</div>
+<h3 class="font-headline-md text-base font-bold text-text-primary">Acompañamiento Personalizado</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+              Te guiamos en la configuración inicial, capacitamos a tu equipo y nos aseguramos de que el software rinda desde el primer día.
+            </p>
+</div>
+<div class="bg-surface-card border border-border-hairline rounded-xl p-space-lg flex flex-col gap-space-sm shadow-md hover:border-primary/40 transition-all">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high border border-border-hairline flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</div>
+<h3 class="font-headline-md text-base font-bold text-text-primary">Soporte Continuo Directo</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+              Atención directa por WhatsApp o videollamada sin intermediarios ni bots que te hagan perder tiempo.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. FINAL CONTACT & CONVERSION FORM -->
+<section class="w-full py-space-4xl bg-surface-container-lowest relative overflow-hidden" id="contacto">
+<div class="absolute -right-32 bottom-0 w-96 h-96 bg-accent-gradient-end/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-start">
+<!-- Left: Information & Value -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-semibold">Atención Inmediata</span>
+<h2 class="font-headline-xl text-headline-xl text-text-primary font-bold tracking-tight">
+                Comenzá tu prueba gratuita o cotizá tu proyecto a medida
+              </h2>
+<p class="font-body-lg text-sm text-text-secondary leading-relaxed">
+                Seleccioná si deseas probar uno de nuestros sistemas listos durante 1 mes sin cargo, o si necesitas un desarrollo exclusivo para tu organización.
+              </p>
+</div>
+<div class="flex flex-col gap-space-sm bg-surface-card border border-border-hairline rounded-xl p-space-lg shadow-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-success text-[20px] mt-0.5">timer</span>
+<div>
+<span class="font-headline-sm text-sm text-text-primary font-bold block">Respuesta en menos de 24 horas</span>
+<span class="font-body-sm text-xs text-text-muted">Un especialista evaluará tu consulta y te responderá de forma directa.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">handshake</span>
+<div>
+<span class="font-headline-sm text-sm text-text-primary font-bold block">Asesoría Inicial Sin Costo</span>
+<span class="font-body-sm text-xs text-text-muted">Despejamos todas tus dudas técnicas y operativas sin compromiso alguno.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">verified_user</span>
+<div>
+<span class="font-headline-sm text-sm text-text-primary font-bold block">Confidencialidad Garantizada (NDA)</span>
+<span class="font-body-sm text-xs text-text-muted">Tus procesos, ideas y bases de datos están totalmente resguardadas.</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 text-xs text-text-secondary">
+<div class="flex items-center gap-space-xs text-text-primary font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<span class="">Córdoba, Argentina • Implementaciones para todo el país</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-success text-[18px]">chat</span>
+<span class="">Atención directa por WhatsApp disponible</span>
+</div>
+</div>
+</div>
+<!-- Right: Interactive Lead Form -->
+<div class="lg:col-span-7">
+<form class="bg-surface-card border border-border-hairline rounded-2xl p-space-xl lg:p-space-2xl shadow-2xl flex flex-col gap-space-md" id="leadForm" onsubmit="handleFormSubmit(event)">
+<!-- Dual Radio Selector (SaaS vs Custom) -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-xs font-bold text-text-primary uppercase tracking-wider">Tipo de Solución</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container border border-border-hairline cursor-pointer hover:border-primary transition-all">
+<input checked="" class="text-primary focus:ring-primary h-4 w-4 bg-surface-base border-border-hairline" name="projectType" onchange="toggleFormMode('saas')" type="radio" value="saas">
+<span class="text-xs font-semibold text-text-primary">Quiero probar un sistema listo (1 mes gratis)</span>
+</label>
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container border border-border-hairline cursor-pointer hover:border-primary transition-all">
+<input class="text-primary focus:ring-primary h-4 w-4 bg-surface-base border-border-hairline" name="projectType" onchange="toggleFormMode('custom')" type="radio" value="custom">
+<span class="text-xs font-semibold text-text-primary">Necesito un desarrollo a medida</span>
+</label>
+</div>
+</div>
+<!-- Product Selector Dropdown / Chips -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-xs font-bold text-text-primary" for="solutionSelect">Seleccioná el sistema o servicio</label>
+<select class="w-full bg-surface-container-high border border-border-hairline rounded-lg p-space-sm text-text-primary font-body-md text-sm focus:outline-none focus:border-primary" id="solutionSelect">
+<option value="LuWeb">LuWeb (Sistema para Lubricentros &amp; Talleres)</option>
+<option value="TiWeb">TiWeb (Sistema de Gestión Integral para Negocios)</option>
+<option value="DataFlow">DataFlow (Business Intelligence &amp; Analítica)</option>
+<option value="WeddingManager">WeddingManager (Finanzas y Presupuesto de Bodas)</option>
+<option value="InvitacionDigital">Invitación Digital &amp; RSVP para Eventos</option>
+<option value="DesarrolloMedida">Desarrollo de Software Exclusivo a Medida</option>
+</select>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-xs text-text-primary font-medium" for="nameInput">Nombre Completo *</label>
+<input class="w-full bg-surface-container-high border border-border-hairline rounded-lg p-space-sm text-text-primary placeholder:text-text-muted text-sm focus:outline-none focus:border-primary" id="nameInput" placeholder="Mariano Rossi" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-xs text-text-primary font-medium" for="emailInput">Email Profesional *</label>
+<input class="w-full bg-surface-container-high border border-border-hairline rounded-lg p-space-sm text-text-primary placeholder:text-text-muted text-sm focus:outline-none focus:border-primary" id="emailInput" placeholder="mariano@empresa.com" required="" type="email">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-xs text-text-primary font-medium" for="phoneInput">Teléfono / WhatsApp *</label>
+<input class="w-full bg-surface-container-high border border-border-hairline rounded-lg p-space-sm text-text-primary placeholder:text-text-muted text-sm focus:outline-none focus:border-primary" id="phoneInput" placeholder="+54 9 351 123-4567" required="" type="tel">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-xs text-text-primary font-medium" for="messageInput">¿Cómo podemos ayudarte? (opcional)</label>
+<textarea class="w-full bg-surface-container-high border border-border-hairline rounded-lg p-space-sm text-text-primary placeholder:text-text-muted text-sm focus:outline-none focus:border-primary resize-none" id="messageInput" placeholder="Contanos brevemente sobre tu negocio, volumen o necesidades particulares..." rows="3"></textarea>
+</div>
+<div class="pt-space-xs flex flex-col gap-space-xs">
+<button class="w-full py-space-md px-space-xl rounded-full font-label-md text-sm font-bold text-white bg-gradient-to-r from-accent-gradient-start to-accent-gradient-end hover:shadow-[0_0_32px_rgba(217,70,239,0.6)] transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-space-xs" type="submit">
+<span class="">Solicitar Acceso Gratuito / Cotización</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+<span class="text-center text-[11px] text-text-muted">
+                  🔒 Cero spam. Tu información se utiliza exclusivamente para responderte.
+                </span>
+</div>
+<!-- Success Alert Notification -->
+<div class="hidden p-space-md rounded-lg bg-success/20 border border-success/40 text-success text-center text-xs font-semibold" id="formSuccessAlert">
+                ¡Solicitud enviada con éxito! Te contactaremos dentro de las próximas 24 horas hábiles.
+              </div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- 11. FOOTER -->
+<footer class="w-full bg-surface-container-lowest border-t border-border-hairline py-space-3xl">
+<div class="max-w-container-max-w mx-auto px-gutter-mobile lg:px-gutter-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-2xl mb-space-3xl">
+<!-- Brand Summary -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<a class="flex items-center gap-space-sm" href="#">
+<img alt="WebSign Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wucj8u48miGz8S087kRFzu-VEhEHM1dfMLd0qRdmqelIVnZbQN-DNvdSC6o5a8vp288jxRgQGKdQGnwN_L6Yp6AVsjK6J6BpWI0Xgd3Bh0n9lwPzT0-GbT7hP4vzAOKL5zOq0qCw_ZTOr0Y6ZEfynwFB6Fnrp1aOrtqpDtc7Un0tSdz97tKE7yNJm_fo54NfoeP-CvTtH7GK_44Vhh8X2WjeM7RRzwBQPnO-5Tr0RS84-7sNaBgZGs9HQ">
+<span class="font-headline-sm text-headline-sm text-text-primary font-extrabold tracking-tight">WebSign</span>
+</a>
+<p class="text-text-secondary font-body-sm text-xs leading-relaxed max-w-sm">
+            Sistemas de software listos para usar y desarrollo de ingeniería personalizada de alto impacto. Soluciones tecnológicas ágiles, accesibles y robustas para pymes, comercios y empresas.
+          </p>
+<div class="flex items-center gap-space-xs text-text-muted text-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+<span class="">Córdoba, Argentina • Atención a todo el país</span>
+</div>
+</div>
+<!-- Col 2: Sistemas SaaS -->
+<div class="lg:col-span-3 flex flex-col gap-space-sm">
+<span class="font-label-caps text-xs uppercase text-primary tracking-wider font-semibold">Sistemas SaaS Listos</span>
+<ul class="flex flex-col gap-1.5 text-xs text-text-secondary">
+<li class=""><a class="hover:text-white transition-colors" href="#luweb">LuWeb — Lubricentros &amp; Talleres</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#tiweb">TiWeb — Gestión Comercial</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#dataflow">DataFlow — BI &amp; Analítica</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#weddingmanager">WeddingManager — Presupuesto Bodas</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#invitaciones">Invitación Digital &amp; RSVP</a></li>
+</ul>
+</div>
+<!-- Col 3: Desarrollo a Medida & Navegación -->
+<div class="lg:col-span-2 flex flex-col gap-space-sm">
+<span class="font-label-caps text-xs uppercase text-primary tracking-wider font-semibold">Servicios a Medida</span>
+<ul class="flex flex-col gap-1.5 text-xs text-text-secondary">
+<li class=""><a class="hover:text-white transition-colors" href="#desarrollo-medida">Sistemas ERP / CRM</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#desarrollo-medida">Desarrollo Web &amp; Apps</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#desarrollo-medida">E-commerce a Medida</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#casos-de-exito">Casos de Éxito</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#precios">Precios &amp; Promo</a></li>
+</ul>
+</div>
+<!-- Col 4: Contacto directo & Ecosistema -->
+<div class="lg:col-span-3 flex flex-col gap-space-sm">
+<span class="font-label-caps text-xs uppercase text-primary tracking-wider font-semibold">Contacto &amp; Soporte</span>
+<p class="text-text-secondary text-xs leading-relaxed">
+            Hablamos de tu proyecto o activamos tu mes de prueba hoy mismo.
+          </p>
+<div class="pt-space-2xs flex flex-col gap-1.5 text-xs font-mono-code text-text-primary">
+<span class="text-success flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-success"></span> WhatsApp Activo
+            </span>
+<span class="text-text-muted">Lunes a Viernes 09:00 - 18:00 hs</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="font-mono-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-text-muted border border-border-hairline">React</span>
+<span class="font-mono-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-text-muted border border-border-hairline">Node.js</span>
+<span class="font-mono-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-text-muted border border-border-hairline">Next.js</span>
+<span class="font-mono-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-text-muted border border-border-hairline">MongoDB</span>
+</div>
+</div>
+</div>
+<div class="pt-space-lg border-t border-border-hairline flex flex-col sm:flex-row items-center justify-between gap-space-sm text-text-muted text-xs">
+<span class="">© 2025 WebSign. Todos los derechos reservados.</span>
+<div class="flex items-center gap-space-md">
+<span class="">Córdoba, Argentina</span>
+<span class="">•</span>
+<a class="hover:text-white transition-colors" href="#contacto">Privacidad &amp; Confidencialidad</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    function toggleFormMode(mode) {
+      const select = document.getElementById('solutionSelect');
+      if (!select) return;
+      if (mode === 'custom') {
+        select.value = 'DesarrolloMedida';
+      } else {
+        if (select.value === 'DesarrolloMedida') {
+          select.value = 'LuWeb';
+        }
+      }
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const alertBox = document.getElementById('formSuccessAlert');
+      if (alertBox) {
+        alertBox.classList.remove('hidden');
+        event.target.reset();
+        setTimeout(() => {
+          alertBox.classList.add('hidden');
+        }, 6000);
+      }
+    }
+  </script>
+
+
+</body></html>

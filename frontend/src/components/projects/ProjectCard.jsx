@@ -6,7 +6,7 @@ export default function ProjectCard({ project }) {
   const image = getImageUrl(project.coverImage);
   return (
     <article className="project-card">
-      <Link className="project-card__media" to={`/portfolio/${project.slug}`} tabIndex="-1" aria-hidden="true">
+      <Link className="project-card__media" to={`/portfolio/${project.slug}`} aria-label={`Ver proyecto ${project.title}`}>
         {image ? <img src={image} alt="" loading="lazy" /> : <div className="project-card__placeholder">WS</div>}
       </Link>
       <div className="project-card__body">

@@ -28,11 +28,11 @@ export default class LocalStorageService {
     await mkdir(this.directory, { recursive: true });
     const filename = `${Date.now()}-${crypto.randomUUID()}${extension}`;
     await writeFile(path.join(this.directory, filename), file.buffer, { flag: 'wx' });
-    return { filename, url: `/uploads/${filename}`, mimeType: file.mimetype, size: file.size };
+    return { filename, url: `/api/uploads/${filename}`, mimeType: file.mimetype, size: file.size };
   }
 
   async remove(url) {
-    if (!url?.startsWith('/uploads/')) return false;
+    if (!/^\/(?:api\/)?uploads\//.test(url || '')) return false;
     const filename = path.basename(url);
     await unlink(path.join(this.directory, filename)).catch((error) => { if (error.code !== 'ENOENT') throw error; });
     return true;

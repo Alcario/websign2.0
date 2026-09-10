@@ -58,8 +58,10 @@ integrationSuite('flujo administrativo con MongoDB aislado', () => {
       .attach('images', pngHeader, { filename: 'cover.png', contentType: 'image/png' });
     expect(uploadResponse.status).toBe(201);
     const coverUrl = uploadResponse.body.data.files[0].url;
+    expect(coverUrl).toMatch(/^\/api\/uploads\//);
     uploadedFilePath = path.resolve(process.cwd(), env.uploadDir, path.basename(coverUrl));
     await expect(access(uploadedFilePath)).resolves.toBeUndefined();
+    expect((await agent.get(coverUrl)).status).toBe(200);
 
     const payload = {
       title: 'Proyecto de integración',

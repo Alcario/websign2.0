@@ -1,6 +1,11 @@
 export function getImageUrl(image) {
   if (!image) return '';
-  return typeof image === 'string' ? image : image.url || '';
+  const url = typeof image === 'string' ? image : image.url || '';
+  if (!/^\/(?:api\/)?uploads\//.test(url)) return url;
+
+  const apiUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '');
+  const uploadPath = url.replace(/^\/api(?=\/uploads\/)/, '');
+  return `${apiUrl}${uploadPath}`;
 }
 
 export function yearLabel(year) {

@@ -8,7 +8,7 @@ const populate = [
 ];
 
 const projectImageUrls = (project) => [project?.coverImage?.url, ...(project?.images || []).map((image) => image.url)]
-  .filter((url) => typeof url === 'string' && url.startsWith('/uploads/'));
+  .filter((url) => typeof url === 'string' && /^\/(?:api\/)?uploads\//.test(url));
 
 const cleanupImages = async (urls) => {
   const results = await Promise.allSettled([...new Set(urls)].map((url) => storageService.remove(url)));
