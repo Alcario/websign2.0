@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import LoadingState from '../../components/common/States';
 import { api } from '../../services/api';
 import { getImageUrl, SLUG_PATTERN, slugify } from '../../utils/formatters';
+import { prepareImageForUpload } from '../../utils/images';
 
 const empty = {
   title: '', slug: '', client: '', shortDescription: '', description: '', category: '', technologies: [],
@@ -65,25 +66,30 @@ export default function ProjectFormPage() {
     if (!files.length) return;
 
     const type = gallery ? 'gallery' : 'cover';
-    const body = new FormData();
-    files.forEach((file) => body.append('images', file));
     setUploadState({ type, error: '' });
 
     try {
-      const data = await api.post('/admin/uploads', body);
-      if (!data.files?.length) throw new Error('El servidor no devolvió la imagen cargada.');
+      const uploadedFiles = [];
+      for (const file of files) {
+        const preparedFile = await prepareImageForUpload(file);
+        const body = new FormData();
+        body.append('images', preparedFile);
+        const data = await api.post('/admin/uploads', body);
+        if (!data.files?.length) throw new Error('El servidor no devolvió la imagen cargada.');
+        uploadedFiles.push(...data.files);
+      }
       if (gallery) {
         setForm((current) => ({
           ...current,
           images: [
             ...current.images,
-            ...data.files.map((file, index) => ({ url: file.url, alt: '', order: current.images.length + index })),
+            ...uploadedFiles.map((file, index) => ({ url: file.url, alt: '', order: current.images.length + index })),
           ],
         }));
       } else {
         setForm((current) => ({
           ...current,
-          coverImage: { url: data.files[0].url, alt: current.title },
+          coverImage: { url: uploadedFiles[0].url, alt: current.title },
         }));
       }
       setUploadState({ type: '', error: '' });
@@ -146,7 +152,7 @@ export default function ProjectFormPage() {
               <Upload />{uploadState.type === 'cover' ? 'Subiendo portada…' : 'Subir portada'}
               <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" disabled={uploading} onChange={(event) => upload(event)} />
             </label>
-            <small className="form-grid__full upload-help">JPG, PNG, WebP o AVIF. Máximo 5 MB.</small>
+            <small className="form-grid__full upload-help">JPG, PNG, WebP o AVIF. Las imágenes grandes se optimizan automáticamente.</small>
             {form.coverImage?.url && (
               <div className="cover-preview form-grid__full">
                 <img src={getImageUrl(form.coverImage)} alt={form.coverImage.alt || 'Vista previa de portada'} />

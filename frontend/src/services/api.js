@@ -23,7 +23,10 @@ async function request(path, options = {}) {
   if (response.status === 204) return null;
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new ApiError(payload.message || 'No se pudo completar la solicitud.', response.status, payload.errors);
+    const fallbackMessage = response.status === 413
+      ? 'El archivo supera el límite permitido por el servidor.'
+      : 'No se pudo completar la solicitud.';
+    throw new ApiError(payload.message || fallbackMessage, response.status, payload.errors);
   }
   return payload.data ?? payload;
 }
