@@ -11,7 +11,17 @@ import { validate } from '../middlewares/validate.js';
 import { booleanPatchSchema, contentSchema, projectSchema, taxonomySchema } from '../validators/schemas.js';
 
 const router = Router();
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: env.maxUploadMb * 1024 * 1024, files: 10 }, fileFilter: (_request, file, callback) => callback(null, ['image/jpeg', 'image/png', 'image/webp', 'image/avif'].includes(file.mimetype)) });
+const allowedImageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: env.maxUploadMb * 1024 * 1024, files: 10 },
+  fileFilter: (_request, file, callback) => {
+    if (allowedImageTypes.includes(file.mimetype)) return callback(null, true);
+    const error = new Error('Formato no permitido. Usá una imagen JPG, PNG, WebP o AVIF.');
+    error.status = 415;
+    return callback(error);
+  },
+});
 router.use(requireAuth);
 router.get('/dashboard', dashboard);
 router.get('/projects', listAdmin);

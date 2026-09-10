@@ -52,6 +52,12 @@ integrationSuite('flujo administrativo con MongoDB aislado', () => {
     expect(technologyResponse.status).toBe(201);
     const technologyId = technologyResponse.body.data.technology._id;
 
+    const invalidUploadResponse = await agent
+      .post('/api/admin/uploads')
+      .attach('images', Buffer.from('not-an-image'), { filename: 'cover.txt', contentType: 'text/plain' });
+    expect(invalidUploadResponse.status).toBe(415);
+    expect(invalidUploadResponse.body.message).toContain('JPG, PNG, WebP o AVIF');
+
     const pngHeader = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
     const uploadResponse = await agent
       .post('/api/admin/uploads')

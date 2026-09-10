@@ -339,6 +339,10 @@ p { color: var(--text-secondary); }
 .file-input { position: relative; min-height: 46px; display: flex !important; flex-direction: row !important; align-items: center; justify-content: center; align-self: end; padding: 10px; border: 1px dashed var(--border-strong); border-radius: 10px; cursor: pointer; }
 .file-input svg { width: 18px; }
 .file-input input { position: absolute; opacity: 0; pointer-events: none; }
+.file-input[aria-disabled="true"] { opacity: .65; cursor: wait; }
+.upload-help { margin-top: -8px; color: var(--text-muted); }
+.cover-preview { display: flex; align-items: center; gap: 12px; padding: 10px; border: 1px solid rgba(16,185,129,.35); border-radius: 10px; background: rgba(16,185,129,.08); color: #6ee7b7; font-size: 13px; font-weight: 700; }
+.cover-preview img { width: 112px; aspect-ratio: 16/10; border-radius: 7px; object-fit: cover; }
 .image-list { grid-column: 1/-1; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 .image-list > div { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; }
 .image-list img { aspect-ratio: 16/10; width: 100%; object-fit: cover; border-radius: 7px; }

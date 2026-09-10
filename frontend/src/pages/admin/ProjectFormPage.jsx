@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import LoadingState from '../../components/common/States';
 import { api } from '../../services/api';
-import { SLUG_PATTERN, slugify } from '../../utils/formatters';
+import { getImageUrl, SLUG_PATTERN, slugify } from '../../utils/formatters';
 
-const empty = { title: '', slug: '', client: '', shortDescription: '', description: '', category: '', technologies: [], coverImage: { url: '', alt: '' }, images: [], year: new Date().getFullYear(), websiteUrl: '', repositoryUrl: '', featured: false, published: false, order: 0, metaTitle: '', metaDescription: '' };
+const empty = {
+  title: '', slug: '', client: '', shortDescription: '', description: '', category: '', technologies: [],
+  coverImage: { url: '', alt: '' }, images: [], year: new Date().getFullYear(), websiteUrl: '',
+  repositoryUrl: '', featured: false, published: false, order: 0, metaTitle: '', metaDescription: '',
+};
+
 const formErrorMessage = (error) => error.details?.length
   ? `${error.message} ${error.details.map(({ field, message }) => `${field}: ${message}`).join(' ')}`
   : error.message;
@@ -17,13 +22,185 @@ export default function ProjectFormPage() {
   const [form, setForm] = useState(empty);
   const [taxonomies, setTaxonomies] = useState({ categories: [], technologies: [] });
   const [status, setStatus] = useState({ loading: editing, saving: false, error: '' });
+  const [uploadState, setUploadState] = useState({ type: '', error: '' });
 
-  useEffect(() => { Promise.all([api.get('/admin/categories'), api.get('/admin/technologies'), editing ? api.get(`/admin/projects/${id}`) : Promise.resolve(null)]).then(([categories, technologies, project]) => { setTaxonomies({ categories: categories.categories, technologies: technologies.technologies }); if (project) setForm({ ...empty, ...project.project, category: project.project.category?._id || '', technologies: project.project.technologies?.map((item) => item._id) || [] }); }).catch((error) => setStatus((current) => ({ ...current, error: error.message }))).finally(() => setStatus((current) => ({ ...current, loading: false }))); }, [editing, id]);
-  const change = ({ target }) => { const { name, value, type, checked } = target; setForm((current) => ({ ...current, [name]: type === 'checkbox' ? checked : value })); };
-  const titleChange = (event) => setForm((current) => ({ ...current, title: event.target.value, slug: editing && current.slug ? current.slug : slugify(event.target.value) }));
-  const techChange = (event) => { const values = [...event.target.selectedOptions].map((option) => option.value); setForm((current) => ({ ...current, technologies: values })); };
-  const upload = async (event, gallery = false) => { const files = [...event.target.files]; if (!files.length) return; const body = new FormData(); files.forEach((file) => body.append('images', file)); try { const data = await api.post('/admin/uploads', body); if (gallery) setForm((current) => ({ ...current, images: [...current.images, ...data.files.map((file, index) => ({ url: file.url, alt: '', order: current.images.length + index }))] })); else setForm((current) => ({ ...current, coverImage: { url: data.files[0].url, alt: current.title } })); } catch (error) { setStatus((current) => ({ ...current, error: error.message })); } };
-  const submit = async (event) => { event.preventDefault(); setStatus((current) => ({ ...current, saving: true, error: '' })); try { const payload = { ...form, year: Number(form.year), order: Number(form.order) }; if (editing) await api.put(`/admin/projects/${id}`, payload); else await api.post('/admin/projects', payload); navigate('/admin/projects'); } catch (error) { setStatus((current) => ({ ...current, saving: false, error: formErrorMessage(error) })); } };
+  useEffect(() => {
+    Promise.all([
+      api.get('/admin/categories'),
+      api.get('/admin/technologies'),
+      editing ? api.get(`/admin/projects/${id}`) : Promise.resolve(null),
+    ]).then(([categories, technologies, project]) => {
+      setTaxonomies({ categories: categories.categories, technologies: technologies.technologies });
+      if (project) {
+        setForm({
+          ...empty,
+          ...project.project,
+          category: project.project.category?._id || '',
+          technologies: project.project.technologies?.map((item) => item._id) || [],
+        });
+      }
+    }).catch((error) => setStatus((current) => ({ ...current, error: error.message })))
+      .finally(() => setStatus((current) => ({ ...current, loading: false })));
+  }, [editing, id]);
+
+  const change = ({ target }) => {
+    const { name, value, type, checked } = target;
+    setForm((current) => ({ ...current, [name]: type === 'checkbox' ? checked : value }));
+  };
+
+  const titleChange = (event) => setForm((current) => ({
+    ...current,
+    title: event.target.value,
+    slug: editing && current.slug ? current.slug : slugify(event.target.value),
+  }));
+
+  const techChange = (event) => {
+    const values = [...event.target.selectedOptions].map((option) => option.value);
+    setForm((current) => ({ ...current, technologies: values }));
+  };
+
+  const upload = async (event, gallery = false) => {
+    const input = event.target;
+    const files = [...input.files];
+    if (!files.length) return;
+
+    const type = gallery ? 'gallery' : 'cover';
+    const body = new FormData();
+    files.forEach((file) => body.append('images', file));
+    setUploadState({ type, error: '' });
+
+    try {
+      const data = await api.post('/admin/uploads', body);
+      if (!data.files?.length) throw new Error('El servidor no devolvió la imagen cargada.');
+      if (gallery) {
+        setForm((current) => ({
+          ...current,
+          images: [
+            ...current.images,
+            ...data.files.map((file, index) => ({ url: file.url, alt: '', order: current.images.length + index })),
+          ],
+        }));
+      } else {
+        setForm((current) => ({
+          ...current,
+          coverImage: { url: data.files[0].url, alt: current.title },
+        }));
+      }
+      setUploadState({ type: '', error: '' });
+    } catch (error) {
+      setUploadState({ type: '', error: error.message });
+    } finally {
+      input.value = '';
+    }
+  };
+
+  const submit = async (event) => {
+    event.preventDefault();
+    if (uploadState.type) return;
+    setStatus((current) => ({ ...current, saving: true, error: '' }));
+    try {
+      const payload = { ...form, year: Number(form.year), order: Number(form.order) };
+      if (editing) await api.put(`/admin/projects/${id}`, payload);
+      else await api.post('/admin/projects', payload);
+      navigate('/admin/projects');
+    } catch (error) {
+      setStatus((current) => ({ ...current, saving: false, error: formErrorMessage(error) }));
+    }
+  };
+
   if (status.loading) return <div className="admin-page"><LoadingState /></div>;
-  return <div className="admin-page"><div className="admin-heading"><div><span className="eyebrow">Portfolio</span><h1>{editing ? 'Editar proyecto' : 'Nuevo proyecto'}</h1></div><Link className="button button--secondary" to="/admin/projects">Cancelar</Link></div><form className="admin-form" onSubmit={submit}><section><h2>Información principal</h2><div className="form-grid"><label>Título<input name="title" value={form.title} onChange={titleChange} required /></label><label>Slug<input name="slug" value={form.slug} onChange={change} pattern={SLUG_PATTERN} title="Usá solo minúsculas, números y guiones" required /></label><label>Cliente<input name="client" value={form.client} onChange={change} /></label><label>Año<input type="number" name="year" min="1990" max="2100" value={form.year} onChange={change} /></label><label className="form-grid__full">Descripción corta<textarea name="shortDescription" value={form.shortDescription} onChange={change} rows="2" maxLength="300" required /></label><label className="form-grid__full">Descripción completa<textarea name="description" value={form.description} onChange={change} rows="8" required /></label></div></section><section><h2>Clasificación</h2><div className="form-grid"><label>Categoría<select name="category" value={form.category} onChange={change} required><option value="">Seleccionar…</option>{taxonomies.categories.map((item) => <option value={item._id} key={item._id}>{item.name}</option>)}</select></label><label>Tecnologías <small>Ctrl/Cmd para seleccionar varias</small><select multiple value={form.technologies} onChange={techChange} size="6">{taxonomies.technologies.map((item) => <option value={item._id} key={item._id}>{item.name}</option>)}</select></label></div></section><section><h2>Imágenes</h2><div className="form-grid"><label>URL de portada<input value={form.coverImage?.url || ''} onChange={(event) => setForm({ ...form, coverImage: { ...form.coverImage, url: event.target.value } })} placeholder="/uploads/… o https://…" /></label><label className="file-input"><Upload />Subir portada<input type="file" accept="image/png,image/jpeg,image/webp,image/avif" onChange={(event) => upload(event)} /></label><label className="form-grid__full">Texto alternativo<input value={form.coverImage?.alt || ''} onChange={(event) => setForm({ ...form, coverImage: { ...form.coverImage, alt: event.target.value } })} /></label><label className="file-input"><Upload />Agregar a galería<input type="file" multiple accept="image/png,image/jpeg,image/webp,image/avif" onChange={(event) => upload(event, true)} /></label>{form.images.length > 0 && <div className="image-list">{form.images.map((image, index) => <div key={`${image.url}-${index}`}><img src={image.url} alt="" /><input value={image.alt || ''} placeholder="Texto alternativo" onChange={(event) => setForm({ ...form, images: form.images.map((item, currentIndex) => currentIndex === index ? { ...item, alt: event.target.value } : item) })} /><button type="button" onClick={() => setForm({ ...form, images: form.images.filter((_, currentIndex) => currentIndex !== index) })}>Quitar</button></div>)}</div>}</div></section><section><h2>Enlaces y publicación</h2><div className="form-grid"><label>URL del proyecto<input type="url" name="websiteUrl" value={form.websiteUrl} onChange={change} /></label><label>Repositorio<input type="url" name="repositoryUrl" value={form.repositoryUrl} onChange={change} /></label><label>Orden<input type="number" name="order" value={form.order} onChange={change} /></label><div className="checkboxes"><label><input type="checkbox" name="published" checked={form.published} onChange={change} />Publicado</label><label><input type="checkbox" name="featured" checked={form.featured} onChange={change} />Destacado</label></div></div></section><section><h2>SEO</h2><div className="form-grid"><label className="form-grid__full">Título SEO<input name="metaTitle" value={form.metaTitle} onChange={change} maxLength="70" /></label><label className="form-grid__full">Descripción SEO<textarea name="metaDescription" value={form.metaDescription} onChange={change} rows="3" maxLength="170" /></label></div></section>{status.error && <p className="form-status form-status--error" role="alert">{status.error}</p>}<div className="form-submit"><button className="button button--primary button--large" disabled={status.saving}><Save />{status.saving ? 'Guardando…' : 'Guardar proyecto'}</button></div></form></div>;
+
+  const uploading = Boolean(uploadState.type);
+  return (
+    <div className="admin-page">
+      <div className="admin-heading">
+        <div><span className="eyebrow">Portfolio</span><h1>{editing ? 'Editar proyecto' : 'Nuevo proyecto'}</h1></div>
+        <Link className="button button--secondary" to="/admin/projects">Cancelar</Link>
+      </div>
+      <form className="admin-form" onSubmit={submit}>
+        <section>
+          <h2>Información principal</h2>
+          <div className="form-grid">
+            <label>Título<input name="title" value={form.title} onChange={titleChange} required /></label>
+            <label>Slug<input name="slug" value={form.slug} onChange={change} pattern={SLUG_PATTERN} title="Usá solo minúsculas, números y guiones" required /></label>
+            <label>Cliente<input name="client" value={form.client} onChange={change} /></label>
+            <label>Año<input type="number" name="year" min="1990" max="2100" value={form.year} onChange={change} /></label>
+            <label className="form-grid__full">Descripción corta<textarea name="shortDescription" value={form.shortDescription} onChange={change} rows="2" maxLength="300" required /></label>
+            <label className="form-grid__full">Descripción completa<textarea name="description" value={form.description} onChange={change} rows="8" required /></label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Clasificación</h2>
+          <div className="form-grid">
+            <label>Categoría<select name="category" value={form.category} onChange={change} required><option value="">Seleccionar…</option>{taxonomies.categories.map((item) => <option value={item._id} key={item._id}>{item.name}</option>)}</select></label>
+            <label>Tecnologías <small>Ctrl/Cmd para seleccionar varias</small><select multiple value={form.technologies} onChange={techChange} size="6">{taxonomies.technologies.map((item) => <option value={item._id} key={item._id}>{item.name}</option>)}</select></label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Imágenes</h2>
+          <div className="form-grid">
+            <label>URL de portada<input value={form.coverImage?.url || ''} onChange={(event) => setForm({ ...form, coverImage: { ...form.coverImage, url: event.target.value } })} placeholder="/uploads/… o https://…" required /></label>
+            <label className="file-input" aria-disabled={uploading}>
+              <Upload />{uploadState.type === 'cover' ? 'Subiendo portada…' : 'Subir portada'}
+              <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" disabled={uploading} onChange={(event) => upload(event)} />
+            </label>
+            <small className="form-grid__full upload-help">JPG, PNG, WebP o AVIF. Máximo 5 MB.</small>
+            {form.coverImage?.url && (
+              <div className="cover-preview form-grid__full">
+                <img src={getImageUrl(form.coverImage)} alt={form.coverImage.alt || 'Vista previa de portada'} />
+                <span>Portada cargada correctamente</span>
+              </div>
+            )}
+            <label className="form-grid__full">Texto alternativo<input value={form.coverImage?.alt || ''} onChange={(event) => setForm({ ...form, coverImage: { ...form.coverImage, alt: event.target.value } })} /></label>
+            <label className="file-input" aria-disabled={uploading}>
+              <Upload />{uploadState.type === 'gallery' ? 'Subiendo galería…' : 'Agregar a galería'}
+              <input type="file" multiple accept="image/png,image/jpeg,image/webp,image/avif" disabled={uploading} onChange={(event) => upload(event, true)} />
+            </label>
+            {uploadState.error && <p className="form-status form-status--error form-grid__full" role="alert">{uploadState.error}</p>}
+            {form.images.length > 0 && (
+              <div className="image-list">
+                {form.images.map((image, index) => (
+                  <div key={`${image.url}-${index}`}>
+                    <img src={getImageUrl(image)} alt="" />
+                    <input value={image.alt || ''} placeholder="Texto alternativo" onChange={(event) => setForm({ ...form, images: form.images.map((item, currentIndex) => currentIndex === index ? { ...item, alt: event.target.value } : item) })} />
+                    <button type="button" onClick={() => setForm({ ...form, images: form.images.filter((_, currentIndex) => currentIndex !== index) })}>Quitar</button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section>
+          <h2>Enlaces y publicación</h2>
+          <div className="form-grid">
+            <label>URL del proyecto<input type="url" name="websiteUrl" value={form.websiteUrl} onChange={change} /></label>
+            <label>Repositorio<input type="url" name="repositoryUrl" value={form.repositoryUrl} onChange={change} /></label>
+            <label>Orden<input type="number" name="order" value={form.order} onChange={change} /></label>
+            <div className="checkboxes">
+              <label><input type="checkbox" name="published" checked={form.published} onChange={change} />Publicado</label>
+              <label><input type="checkbox" name="featured" checked={form.featured} onChange={change} />Destacado</label>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>SEO</h2>
+          <div className="form-grid">
+            <label className="form-grid__full">Título SEO<input name="metaTitle" value={form.metaTitle} onChange={change} maxLength="70" /></label>
+            <label className="form-grid__full">Descripción SEO<textarea name="metaDescription" value={form.metaDescription} onChange={change} rows="3" maxLength="170" /></label>
+          </div>
+        </section>
+
+        {status.error && <p className="form-status form-status--error" role="alert">{status.error}</p>}
+        <div className="form-submit">
+          <button className="button button--primary button--large" disabled={status.saving || uploading}>
+            <Save />{status.saving ? 'Guardando…' : uploading ? 'Esperando imagen…' : 'Guardar proyecto'}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
